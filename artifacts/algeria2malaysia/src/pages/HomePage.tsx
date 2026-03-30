@@ -361,7 +361,7 @@ export default function HomePage() {
           {/* Social Media Links */}
           <div className="flex items-center justify-center gap-5 mb-8">
             <a
-              href="https://www.instagram.com/algeria2malaysia"
+              href="https://www.instagram.com/algeria2malaysia?igsh=MXE2emw2aTc0eWZnbw%3D%3D&utm_source=qr"
               target="_blank"
               rel="noopener noreferrer"
               className="flex flex-col items-center gap-1.5 group"
@@ -376,7 +376,7 @@ export default function HomePage() {
             </a>
 
             <a
-              href="https://www.tiktok.com/@algeria2malaysia"
+              href="https://www.tiktok.com/@algeria2malaysiaa?_r=1&_t=ZS-957y69kPwJD"
               target="_blank"
               rel="noopener noreferrer"
               className="flex flex-col items-center gap-1.5 group"
@@ -391,7 +391,7 @@ export default function HomePage() {
             </a>
 
             <a
-              href="https://www.facebook.com/algeria2malaysia"
+              href="https://www.facebook.com/profile.php?id=61586106531700"
               target="_blank"
               rel="noopener noreferrer"
               className="flex flex-col items-center gap-1.5 group"
