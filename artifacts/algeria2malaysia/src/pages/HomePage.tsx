@@ -194,6 +194,8 @@ export default function HomePage() {
                 nameAr: "معهد ستراتفورد",
                 badge: "إنجليزي مكثف",
                 color: "bg-teal-600",
+                logo: "/stratford-logo.png",
+                logoBg: "bg-white",
                 desc: "برامج مكثفة 4-6 ساعات/يوم في موقع متميز بـ KLCC",
                 from: "2,500 RM",
                 fromEur: "≈ 500 €",
@@ -203,6 +205,8 @@ export default function HomePage() {
                 nameAr: "مجموعة بيغ بن",
                 badge: "IELTS & IEP",
                 color: "bg-red-800",
+                logo: "/bigben-logo.png",
+                logoBg: "bg-white",
                 desc: "المعهد الوحيد في ماليزيا المعتمد من Pearson. IELTS وبرامج أكاديمية متكاملة",
                 from: "2,618 RM",
                 fromEur: "≈ 524 €",
@@ -212,23 +216,32 @@ export default function HomePage() {
                 nameAr: "مركز إيريكان",
                 badge: "Cambridge & IELTS",
                 color: "bg-orange-600",
+                logo: "/erican-logo.png",
+                logoBg: "bg-navy-900",
                 desc: "مركز معتمد لامتحانات Cambridge وIDP IELTS. 400,000+ متعلم",
                 from: "2,000 RM",
                 fromEur: "≈ 400 €",
               },
             ].map((inst) => (
               <div key={inst.name} className="border border-gray-200 rounded-2xl overflow-hidden hover:shadow-lg transition-all hover:border-green-200 group">
-                <div className={`${inst.color} h-3`}></div>
+                <div className={`${inst.color} h-2`}></div>
                 <div className="p-6">
-                  <div className={`inline-block ${inst.color} text-white text-xs font-semibold px-3 py-1 rounded-full mb-3`}>
-                    {inst.badge}
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-16 h-16 rounded-xl bg-white border border-gray-100 shadow-sm flex items-center justify-center overflow-hidden flex-shrink-0 p-1">
+                      <img src={inst.logo} alt={inst.name} className="w-full h-full object-contain" />
+                    </div>
+                    <div>
+                      <div className={`inline-block ${inst.color} text-white text-xs font-semibold px-3 py-1 rounded-full mb-1`}>
+                        {inst.badge}
+                      </div>
+                      <h3 className="font-bold text-gray-900 text-lg leading-tight">{inst.nameAr}</h3>
+                      <p className="text-gray-400 text-xs">{inst.name}</p>
+                    </div>
                   </div>
-                  <h3 className="font-bold text-gray-900 text-lg mb-1">{inst.nameAr}</h3>
-                  <p className="text-gray-500 text-xs mb-3">{inst.name}</p>
                   <p className="text-gray-600 text-sm leading-relaxed mb-4">{inst.desc}</p>
                   <div className="flex items-center justify-between">
                     <div className="text-green-700 font-bold text-sm">تبدأ من {inst.from}</div>
-                  <div className="text-green-500 text-xs mt-0.5">{inst.fromEur}</div>
+                    <div className="text-green-500 text-xs">{inst.fromEur}</div>
                   </div>
                 </div>
               </div>
@@ -337,14 +350,64 @@ export default function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-green-900 text-white py-10">
+      <footer className="bg-green-900 text-white py-12">
         <div className="max-w-5xl mx-auto px-4 text-center">
           <div className="flex justify-center mb-4">
-            <img src="/logo.jpeg" alt="Algeria2Malaysia" className="w-14 h-14 rounded-full border-2 border-white/20 object-cover" />
+            <img src="/logo.jpeg" alt="Algeria2Malaysia" className="w-16 h-16 rounded-full border-2 border-white/30 object-cover shadow-lg" />
           </div>
           <div className="text-xl font-bold mb-1">Algeria2Malaysia</div>
-          <div className="text-green-300 text-sm mb-4">من الجزائر إلى ماليزيا — مستقبلك يبدأ هنا</div>
-          <div className="border-t border-green-700 pt-4 text-green-400 text-xs">
+          <div className="text-green-300 text-sm mb-6">من الجزائر إلى ماليزيا — مستقبلك يبدأ هنا</div>
+
+          {/* Social Media Links */}
+          <div className="flex items-center justify-center gap-5 mb-8">
+            <a
+              href="https://www.instagram.com/algeria2malaysia"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center gap-1.5 group"
+              aria-label="Instagram"
+            >
+              <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+                <svg viewBox="0 0 24 24" fill="white" className="w-5 h-5">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                </svg>
+              </div>
+              <span className="text-green-300 text-xs group-hover:text-white transition-colors">Instagram</span>
+            </a>
+
+            <a
+              href="https://www.tiktok.com/@algeria2malaysia"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center gap-1.5 group"
+              aria-label="TikTok"
+            >
+              <div className="w-11 h-11 rounded-xl bg-black flex items-center justify-center shadow-md group-hover:scale-110 transition-transform border border-white/10">
+                <svg viewBox="0 0 24 24" fill="white" className="w-5 h-5">
+                  <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.27 8.27 0 004.84 1.55V6.79a4.85 4.85 0 01-1.07-.1z"/>
+                </svg>
+              </div>
+              <span className="text-green-300 text-xs group-hover:text-white transition-colors">TikTok</span>
+            </a>
+
+            <a
+              href="https://www.facebook.com/algeria2malaysia"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center gap-1.5 group"
+              aria-label="Facebook"
+            >
+              <div className="w-11 h-11 rounded-xl bg-blue-600 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+                <svg viewBox="0 0 24 24" fill="white" className="w-5 h-5">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+              </div>
+              <span className="text-green-300 text-xs group-hover:text-white transition-colors">Facebook</span>
+            </a>
+          </div>
+
+          <div className="text-green-400 text-xs mb-1">تابعنا على وسائل التواصل: @algeria2malaysia</div>
+          <div className="border-t border-green-700 pt-4 text-green-500 text-xs">
             © 2025 Algeria2Malaysia. جميع الحقوق محفوظة.
           </div>
         </div>
