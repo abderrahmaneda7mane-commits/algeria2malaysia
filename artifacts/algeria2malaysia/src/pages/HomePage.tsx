@@ -196,6 +196,7 @@ export default function HomePage() {
                 color: "bg-teal-600",
                 desc: "برامج مكثفة 4-6 ساعات/يوم في موقع متميز بـ KLCC",
                 from: "2,500 RM",
+                fromEur: "≈ 500 €",
               },
               {
                 name: "Big Ben Education",
@@ -204,6 +205,7 @@ export default function HomePage() {
                 color: "bg-red-800",
                 desc: "المعهد الوحيد في ماليزيا المعتمد من Pearson. IELTS وبرامج أكاديمية متكاملة",
                 from: "2,618 RM",
+                fromEur: "≈ 524 €",
               },
               {
                 name: "Erican Language Centre",
@@ -212,6 +214,7 @@ export default function HomePage() {
                 color: "bg-orange-600",
                 desc: "مركز معتمد لامتحانات Cambridge وIDP IELTS. 400,000+ متعلم",
                 from: "2,000 RM",
+                fromEur: "≈ 400 €",
               },
             ].map((inst) => (
               <div key={inst.name} className="border border-gray-200 rounded-2xl overflow-hidden hover:shadow-lg transition-all hover:border-green-200 group">
@@ -225,6 +228,7 @@ export default function HomePage() {
                   <p className="text-gray-600 text-sm leading-relaxed mb-4">{inst.desc}</p>
                   <div className="flex items-center justify-between">
                     <div className="text-green-700 font-bold text-sm">تبدأ من {inst.from}</div>
+                  <div className="text-green-500 text-xs mt-0.5">{inst.fromEur}</div>
                   </div>
                 </div>
               </div>

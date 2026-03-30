@@ -13,11 +13,18 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-green-100 shadow-sm">
-      <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/97 backdrop-blur-sm border-b border-green-100 shadow-sm">
+      <div className="max-w-6xl mx-auto px-4 h-18 flex items-center justify-between" style={{ height: "72px" }}>
         <div className="flex items-center gap-3">
-          <img src="/logo.jpeg" alt="Algeria2Malaysia" className="h-10 w-10 rounded-full object-cover" />
-          <div className="hidden sm:block">
+          {/* Logo — white background + object-contain to keep logo crisp */}
+          <div className="w-14 h-14 rounded-full bg-white border-2 border-green-200 shadow-sm flex items-center justify-center overflow-hidden flex-shrink-0">
+            <img
+              src="/logo.jpeg"
+              alt="Algeria2Malaysia"
+              className="w-full h-full object-contain"
+            />
+          </div>
+          <div>
             <div className="text-green-800 font-bold text-base leading-tight">Algeria2Malaysia</div>
             <div className="text-green-600 text-xs">الجزائر إلى ماليزيا</div>
           </div>
@@ -35,7 +42,7 @@ export default function Navbar() {
           ))}
           <a
             href="#apply"
-            className="bg-green-700 text-white px-5 py-2 rounded-full text-sm font-bold hover:bg-green-800 transition-colors"
+            className="bg-green-700 text-white px-5 py-2.5 rounded-full text-sm font-bold hover:bg-green-800 transition-colors shadow-sm"
           >
             ابدأ الآن
           </a>

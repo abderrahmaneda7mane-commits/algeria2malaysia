@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ArrowRight, ArrowLeft, CheckCircle, BookOpen, Building2, DollarSign, Target, BedDouble, Calendar } from "lucide-react";
-import { INSTITUTES, ACCOMMODATION_OPTIONS, suggestInstitutes, WHATSAPP_URL, GOOGLE_FORM_LINKS } from "../data/institutes";
+import { INSTITUTES, ACCOMMODATION_OPTIONS, suggestInstitutes, GOOGLE_FORM_LINKS, toEur } from "../data/institutes";
 import type { Goal, RoomType } from "../data/institutes";
 import { useNavigate } from "../hooks/useNavigate";
 
@@ -97,11 +97,11 @@ export default function ApplyPage({ initialType }: { initialType?: "institute" |
     const inst = INSTITUTES.find((i) => i.id === form.selectedInstitute);
     const room = ACCOMMODATION_OPTIONS.find((r) => r.id === form.room);
     const goalLabel = { ielts: "IELTS", general: "إنجليزي عام", pathway: "مسار الجامعة" }[form.goal || "general"];
-    return `السلام عليكم! أنا طالب جزائر يريد الدراسة في ماليزيا.
+    return `السلام عليكم! أنا طالب جزائري يريد الدراسة في ماليزيا.
 هدفي: ${goalLabel}
-ميزانيتي: ${form.budget} RM
+ميزانيتي: ${form.budget.toLocaleString()} RM (≈ ${toEur(form.budget).toLocaleString()} €)
 المعهد المختار: ${inst?.nameAr || "لم يتم الاختيار"}
-نوع السكن: ${room?.label || "لم يتم الاختيار"} (${room?.priceRange || ""})
+نوع السكن: ${room?.label || "لم يتم الاختيار"} (${room?.priceRangeRm || ""} / ${room?.priceRangeEur || ""})
 موعد البدء: ${form.intake || "لم يتم الاختيار"}
 أرجو التواصل معي لإتمام الإجراءات.`;
   }
@@ -244,11 +244,11 @@ export default function ApplyPage({ initialType }: { initialType?: "institute" |
 
   if (step === "budget") {
     const budgetOptions = [
-      { value: 3000, label: "أقل من 3,000 RM" },
-      { value: 6000, label: "3,000 – 6,000 RM" },
-      { value: 10000, label: "6,000 – 10,000 RM" },
-      { value: 15000, label: "10,000 – 15,000 RM" },
-      { value: 25000, label: "أكثر من 15,000 RM" },
+      { value: 3000, label: "أقل من 3,000 RM", labelEur: "≈ أقل من 600 €" },
+      { value: 6000, label: "3,000 – 6,000 RM", labelEur: "≈ 600 – 1,200 €" },
+      { value: 10000, label: "6,000 – 10,000 RM", labelEur: "≈ 1,200 – 2,000 €" },
+      { value: 15000, label: "10,000 – 15,000 RM", labelEur: "≈ 2,000 – 3,000 €" },
+      { value: 25000, label: "أكثر من 15,000 RM", labelEur: "≈ أكثر من 3,000 €" },
     ];
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center py-20 px-4" dir="rtl">
@@ -265,6 +265,7 @@ export default function ApplyPage({ initialType }: { initialType?: "institute" |
                 key={opt.value}
                 icon={<DollarSign size={20} />}
                 title={opt.label}
+                desc={opt.labelEur}
                 selected={form.budget === opt.value}
                 onClick={() => setForm({ ...form, budget: opt.value })}
               />
@@ -318,7 +319,12 @@ export default function ApplyPage({ initialType }: { initialType?: "institute" |
                   </div>
                   <div className="text-gray-500 text-xs mb-2">{inst.name}</div>
                   <p className="text-sm text-gray-600 leading-relaxed mb-3">{inst.description}</p>
-                  <div className="text-green-700 font-bold text-sm">تبدأ من {inst.programs[0]?.price.toLocaleString()} RM</div>
+                  <div className="text-green-700 font-bold text-sm">
+                    تبدأ من {inst.programs[0]?.specialOffer?.toLocaleString() ?? inst.programs[0]?.price.toLocaleString()} RM
+                    <span className="text-green-500 font-normal text-xs mr-2">
+                      (≈ {toEur(inst.programs[0]?.specialOffer ?? inst.programs[0]?.price ?? 0).toLocaleString()} €)
+                    </span>
+                  </div>
                 </button>
               ))}
             </div>
@@ -352,7 +358,7 @@ export default function ApplyPage({ initialType }: { initialType?: "institute" |
               <Card
                 key={room.id}
                 icon={<BedDouble size={20} />}
-                title={`${room.label} — ${room.priceRange}`}
+                title={`${room.label} — ${room.priceRangeRm}  (${room.priceRangeEur})`}
                 desc={room.description}
                 selected={form.room === room.id}
                 onClick={() => setForm({ ...form, room: room.id })}
@@ -428,9 +434,9 @@ export default function ApplyPage({ initialType }: { initialType?: "institute" |
           <div className="bg-green-50 rounded-2xl p-5 mb-6 space-y-3">
             {[
               { label: "الهدف", value: goalLabel },
-              { label: "الميزانية", value: `${form.budget.toLocaleString()} RM` },
+              { label: "الميزانية", value: `${form.budget.toLocaleString()} RM (≈ ${toEur(form.budget).toLocaleString()} €)` },
               { label: "المعهد المختار", value: selectedInst?.nameAr },
-              { label: "نوع السكن", value: `${room?.label} (${room?.priceRange})` },
+              { label: "نوع السكن", value: `${room?.label} (${room?.priceRangeRm} / ${room?.priceRangeEur})` },
               { label: "موعد البدء", value: form.intake },
             ].map(({ label, value }) => (
               <div key={label} className="flex justify-between text-sm">
