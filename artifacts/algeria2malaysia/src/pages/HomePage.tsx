@@ -12,7 +12,7 @@ const WHATSAPP_SVG = (
 const UNIVERSITIES = [
   {
     name: "APU",
-    nameAr: "جامعة آسيا باسيفيك",
+    nameAr: "جامعة آسيا باسيفيك للتكنولوجيا والابتكار",
     desc: "بيئة دولية متميزة وبرامج تقنية حديثة",
     strengths: ["قوية في IT والتكنولوجيا", "بيئة طلابية دولية", "شراكات عالمية"],
     img: "https://images.unsplash.com/photo-1562774053-701939374585?w=600&q=80",
