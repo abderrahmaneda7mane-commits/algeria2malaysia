@@ -518,7 +518,7 @@ export default function HomePage() {
               <div
                 key={uni.name}
                 className="bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl hover:border-green-200 hover:-translate-y-1 transition-all group cursor-pointer"
-                onClick={() => go("apply", { type: "university" })}
+                onClick={() => go("universities")}
               >
                 <div className="relative h-40 overflow-hidden">
                   <img
@@ -552,14 +552,14 @@ export default function HomePage() {
             ))}
           </div>
 
-          <div className="text-center mt-12">
+          <div className="text-center mt-12 flex flex-col sm:flex-row gap-4 justify-center">
             <button
-              onClick={() => go("apply", { type: "university" })}
-              className="bg-green-700 hover:bg-green-800 text-white px-10 py-4 rounded-full font-bold text-xl transition-all shadow-xl hover:shadow-2xl flex items-center gap-3 mx-auto group"
+              onClick={() => go("universities")}
+              className="bg-green-700 hover:bg-green-800 text-white px-10 py-4 rounded-full font-bold text-lg transition-all shadow-xl hover:shadow-2xl flex items-center gap-3 mx-auto group"
             >
-              <Building2 size={22} />
-              <span>قدّم للجامعة الآن</span>
-              <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
+              <Building2 size={20} />
+              <span>عرض تفاصيل جميع الجامعات والأسعار</span>
+              <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
             </button>
           </div>
         </div>

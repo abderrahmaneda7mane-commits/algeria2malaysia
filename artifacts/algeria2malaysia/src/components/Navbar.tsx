@@ -1,16 +1,18 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { useNavigate } from "../hooks/useNavigate";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const { go } = useNavigate();
 
   const links = [
-    { label: "الرئيسية", href: "#hero" },
-    { label: "من نحن", href: "#about" },
-    { label: "خدماتنا", href: "#services" },
-    { label: "الجامعات", href: "#universities" },
-    { label: "المعاهد", href: "#institutes" },
-    { label: "تواصل معنا", href: "#contact" },
+    { label: "الرئيسية", href: "#hero", page: null },
+    { label: "من نحن", href: "#about", page: null },
+    { label: "خدماتنا", href: "#services", page: null },
+    { label: "الجامعات", href: null, page: "universities" as const },
+    { label: "المعاهد", href: "#institutes", page: null },
+    { label: "تواصل معنا", href: "#contact", page: null },
   ];
 
   return (
@@ -32,15 +34,25 @@ export default function Navbar() {
         </div>
 
         <div className="hidden md:flex items-center gap-6">
-          {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="text-sm text-gray-700 hover:text-green-700 font-medium transition-colors"
-            >
-              {l.label}
-            </a>
-          ))}
+          {links.map((l) =>
+            l.page ? (
+              <button
+                key={l.label}
+                onClick={() => go(l.page!)}
+                className="text-sm text-gray-700 hover:text-green-700 font-medium transition-colors"
+              >
+                {l.label}
+              </button>
+            ) : (
+              <a
+                key={l.label}
+                href={l.href!}
+                className="text-sm text-gray-700 hover:text-green-700 font-medium transition-colors"
+              >
+                {l.label}
+              </a>
+            )
+          )}
           <a
             href="#apply"
             className="bg-green-700 text-white px-5 py-2.5 rounded-full text-sm font-bold hover:bg-green-800 transition-colors shadow-sm"
@@ -60,16 +72,26 @@ export default function Navbar() {
 
       {open && (
         <div className="md:hidden bg-white border-t border-green-100 px-4 py-4 flex flex-col gap-3">
-          {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="text-sm text-gray-700 hover:text-green-700 font-medium py-2 border-b border-gray-100"
-              onClick={() => setOpen(false)}
-            >
-              {l.label}
-            </a>
-          ))}
+          {links.map((l) =>
+            l.page ? (
+              <button
+                key={l.label}
+                onClick={() => { go(l.page!); setOpen(false); }}
+                className="text-sm text-gray-700 hover:text-green-700 font-medium py-2 border-b border-gray-100 text-right"
+              >
+                {l.label}
+              </button>
+            ) : (
+              <a
+                key={l.label}
+                href={l.href!}
+                className="text-sm text-gray-700 hover:text-green-700 font-medium py-2 border-b border-gray-100"
+                onClick={() => setOpen(false)}
+              >
+                {l.label}
+              </a>
+            )
+          )}
           <a
             href="#apply"
             className="bg-green-700 text-white px-5 py-3 rounded-full text-sm font-bold text-center hover:bg-green-800 transition-colors mt-2"
