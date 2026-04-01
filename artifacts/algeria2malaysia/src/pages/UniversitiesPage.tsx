@@ -1,5 +1,6 @@
+import { useEffect } from "react";
 import { ArrowLeft, CheckCircle, GraduationCap, MapPin, BookOpen, Building2 } from "lucide-react";
-import { useNavigate } from "../hooks/useNavigate";
+import { useNavigate, getNavState } from "../hooks/useNavigate";
 
 const WA_LINK = "https://wa.me/601112200603";
 
@@ -177,28 +178,52 @@ const UNIVERSITIES = [
     accentColor: "emerald",
   },
   {
-    id: "um",
-    name: "UM",
-    nameAr: "جامعة مالايا (UM)",
-    nameFull: "Universiti Malaya",
-    location: "كوالالمبور (Pantai Valley)",
-    established: "1905",
-    badge: "#1 Malaysia",
-    badgeColor: "bg-red-700",
-    desc: "الجامعة رقم 1 في ماليزيا وإحدى أعرق الجامعات في جنوب شرق آسيا. تأسست عام 1905 وتحتل مرتبة ضمن أفضل 65 جامعة في آسيا وأفضل 200 عالمياً (QS 2025). تضم أكثر من 22 كلية ومعهداً.",
-    logoImg: "/logos/um.png",
-    strengths: ["#1 في ماليزيا — QS World Rankings 2025", "ضمن أفضل 65 جامعة في آسيا", "أعرق جامعة ماليزية (تأسست 1905)", "22+ كلية تشمل الطب والقانون والهندسة"],
+    id: "utm",
+    name: "UTM",
+    nameAr: "جامعة تكنولوجيا ماليزيا (UTM)",
+    nameFull: "Universiti Teknologi Malaysia",
+    location: "جوهور بهرو — جوهور (الحرم الرئيسي) + كوالالمبور (UTM KL)",
+    established: "1904",
+    badge: "Top Engineering",
+    badgeColor: "bg-sky-600",
+    desc: "إحدى أعرق الجامعات الهندسية الحكومية في ماليزيا، تأسست 1904 وتحتل مراتب متقدمة عالمياً في الهندسة والتكنولوجيا. تمتلك حرمين رئيسيين: الحرم الأم في جوهور بهرو وحرم كوالالمبور UTM KL.",
+    logoImg: "/logos/utm.png",
+    strengths: ["رائدة في الهندسة والتكنولوجيا منذ 1904", "حرمان رئيسيان: جوهور بهرو وكوالالمبور", "قوية في علوم البيئة المبنية والعلوم التطبيقية", "بحث علمي متقدم وشراكات صناعية دولية"],
     programs: [
-      { level: "البكالوريوس", duration: "3-5 سنوات", specialties: ["الطب والجراحة MBBS", "القانون LLB", "الهندسة (مدنية، ميكانيك، كهرباء)", "علوم الحاسوب", "الاقتصاد والأعمال"] },
-      { level: "الماستر", duration: "1.5-2 سنة", specialties: ["MBA", "الطب التخصصي", "الهندسة", "علوم الحاسوب", "التربية"] },
-      { level: "الدكتوراه", duration: "3-5 سنوات", specialties: ["تخصصات بحثية في جميع الكليات"] },
+      { level: "البكالوريوس", duration: "4 سنوات", specialties: ["هندسة مدنية", "هندسة كهربائية", "هندسة ميكانيكية", "هندسة الكمبيوتر", "علوم البناء والعمارة"] },
+      { level: "الماستر", duration: "1.5-2 سنة", specialties: ["هندسة الإنشاءات", "الهندسة الكهربائية", "علوم الحاسوب"] },
+      { level: "الدكتوراه", duration: "3-5 سنوات", specialties: ["تخصصات بحثية في الهندسة والتكنولوجيا"] },
     ],
     pricing: [
-      { label: "البكالوريوس (دولي)", rm: "7,000 – 18,000", eur: `${fmtEur(7000)} – ${fmtEur(18000)}`, note: "سنوياً" },
-      { label: "الماستر (دولي)", rm: "12,000 – 22,000", eur: `${fmtEur(12000)} – ${fmtEur(22000)}`, note: "المجموع" },
-      { label: "الدكتوراه (دولي)", rm: "14,000 – 24,000", eur: `${fmtEur(14000)} – ${fmtEur(24000)}`, note: "سنوياً" },
+      { label: "البكالوريوس (دولي)", rm: "12,000 – 20,000", eur: `${fmtEur(12000)} – ${fmtEur(20000)}`, note: "سنوياً" },
+      { label: "الماستر (دولي)", rm: "15,000 – 25,000", eur: `${fmtEur(15000)} – ${fmtEur(25000)}`, note: "المجموع" },
+      { label: "الدكتوراه (دولي)", rm: "18,000 – 30,000", eur: `${fmtEur(18000)} – ${fmtEur(30000)}`, note: "سنوياً" },
     ],
-    accentColor: "red",
+    accentColor: "sky",
+  },
+  {
+    id: "utem",
+    name: "UTeM",
+    nameAr: "جامعة تكنيكال ماليزيا ملاكا (UTeM)",
+    nameFull: "Universiti Teknikal Malaysia Melaka",
+    location: "دوريان تونغال — ملاكا",
+    established: "2000",
+    badge: "Technical Engineering",
+    badgeColor: "bg-rose-600",
+    desc: "جامعة حكومية تقنية متخصصة تأسست عام 2000 في ملاكا، تُركّز على الهندسة التقنية التطبيقية والتصنيع والإلكترونيك. تُقدّم تدريباً عملياً مكثفاً يُؤهّل الطلاب مباشرةً لسوق العمل الصناعي.",
+    logoImg: "/logos/utem.png",
+    strengths: ["متخصصة في الهندسة التقنية التطبيقية", "رائدة في تكنولوجيا التصنيع والإلكترونيك", "تدريب عملي مكثف مرتبط بالصناعة", "رسوم تنافسية كجامعة حكومية"],
+    programs: [
+      { level: "البكالوريوس", duration: "4 سنوات", specialties: ["هندسة الإلكترونيك", "هندسة التصنيع", "هندسة الميكاترونيك", "هندسة الكهرباء الصناعية", "هندسة الحاسوب"] },
+      { level: "الماستر", duration: "1.5-2 سنة", specialties: ["هندسة الإلكترونيك المتقدمة", "هندسة التصنيع", "إدارة الهندسة"] },
+      { level: "الدكتوراه", duration: "3-5 سنوات", specialties: ["تخصصات بحثية في الهندسة التقنية"] },
+    ],
+    pricing: [
+      { label: "البكالوريوس (دولي)", rm: "8,000 – 14,000", eur: `${fmtEur(8000)} – ${fmtEur(14000)}`, note: "سنوياً" },
+      { label: "الماستر (دولي)", rm: "12,000 – 20,000", eur: `${fmtEur(12000)} – ${fmtEur(20000)}`, note: "المجموع" },
+      { label: "الدكتوراه (دولي)", rm: "15,000 – 24,000", eur: `${fmtEur(15000)} – ${fmtEur(24000)}`, note: "سنوياً" },
+    ],
+    accentColor: "rose",
   },
   {
     id: "ucsi",
@@ -258,13 +283,24 @@ const accentMap: Record<string, { border: string; badge: string; text: string; b
   green:   { border: "border-green-400",   badge: "bg-green-600",   text: "text-green-700",   bg: "bg-green-50" },
   yellow:  { border: "border-yellow-500",  badge: "bg-yellow-600",  text: "text-yellow-700",  bg: "bg-yellow-50" },
   emerald: { border: "border-emerald-400", badge: "bg-emerald-600", text: "text-emerald-700", bg: "bg-emerald-50" },
-  red:     { border: "border-red-400",     badge: "bg-red-700",     text: "text-red-700",     bg: "bg-red-50" },
   pink:    { border: "border-pink-400",    badge: "bg-pink-600",    text: "text-pink-700",    bg: "bg-pink-50" },
   indigo:  { border: "border-indigo-400",  badge: "bg-indigo-600",  text: "text-indigo-700",  bg: "bg-indigo-50" },
+  sky:     { border: "border-sky-400",     badge: "bg-sky-600",     text: "text-sky-700",     bg: "bg-sky-50" },
+  rose:    { border: "border-rose-400",    badge: "bg-rose-600",    text: "text-rose-700",    bg: "bg-rose-50" },
 };
 
 export default function UniversitiesPage() {
   const { go } = useNavigate();
+
+  useEffect(() => {
+    const { state } = getNavState();
+    if (state.scrollTo) {
+      const id = state.scrollTo;
+      setTimeout(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+      }, 80);
+    }
+  }, []);
 
   return (
     <div className="min-h-screen bg-white" dir="rtl">
@@ -280,7 +316,7 @@ export default function UniversitiesPage() {
         <div className="inline-block bg-white/20 backdrop-blur-sm border border-white/30 rounded-full px-4 py-1 text-sm font-medium mb-4">
           🎓 جامعاتنا الشريكة
         </div>
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">10 جامعات ماليزية معتمدة</h1>
+        <h1 className="text-4xl md:text-5xl font-bold mb-4">11 جامعة ماليزية معتمدة</h1>
         <p className="text-green-100 text-lg max-w-2xl mx-auto">
           نساعدك على الالتحاق بأفضل الجامعات الماليزية المعترف بها دولياً — استشارة مجانية، نتولى كل الإجراءات
         </p>
@@ -416,15 +452,13 @@ export default function UniversitiesPage() {
                       <span>التقديم لـ {uni.name}</span>
                       <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
                     </button>
-                    <a
-                      href={`https://wa.me/601112200603?text=${encodeURIComponent(`السلام عليكم، أرغب في طلب خطاب القبول (Offer Letter) من جامعة ${uni.nameFull} — ${uni.nameAr}`)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <button
+                      onClick={() => go("uni-apply", { university: uni.name })}
                       className="flex-1 bg-amber-500 hover:bg-amber-600 text-white px-6 py-3 rounded-full font-bold text-sm transition-all shadow-md flex items-center justify-center gap-2"
                     >
                       <span>📄</span>
                       طلب Offer Letter
-                    </a>
+                    </button>
                     <a
                       href={WA_LINK}
                       target="_blank"

@@ -1,5 +1,6 @@
+import { useEffect } from "react";
 import { GraduationCap, Globe, DollarSign, Shield, Star, CheckCircle, ArrowLeft, Building2, BookOpen, Users, Award, Phone, MapPin, Wifi, Home, Plane, MessageCircle } from "lucide-react";
-import { useNavigate } from "../hooks/useNavigate";
+import { useNavigate, getNavState } from "../hooks/useNavigate";
 
 const WA_LINK = "https://wa.me/601112200603";
 
@@ -11,6 +12,7 @@ const WHATSAPP_SVG = (
 
 const UNIVERSITIES = [
   {
+    uniId: "apu",
     name: "APU",
     nameAr: "جامعة آسيا باسيفيك للتكنولوجيا والابتكار",
     desc: "بيئة دولية متميزة وبرامج تقنية حديثة",
@@ -20,6 +22,7 @@ const UNIVERSITIES = [
     badgeColor: "bg-blue-600",
   },
   {
+    uniId: "taylors",
     name: "Taylor's University",
     nameAr: "جامعة تايلور",
     desc: "من أعلى الجامعات الخاصة تصنيفاً في ماليزيا",
@@ -29,6 +32,7 @@ const UNIVERSITIES = [
     badgeColor: "bg-purple-600",
   },
   {
+    uniId: "mmu",
     name: "MMU",
     nameAr: "جامعة الوسائط المتعددة",
     desc: "رائدة في التكنولوجيا والهندسة والاتصالات",
@@ -38,6 +42,7 @@ const UNIVERSITIES = [
     badgeColor: "bg-teal-600",
   },
   {
+    uniId: "unikl",
     name: "UniKL",
     nameAr: "جامعة كوالالمبور",
     desc: "متخصصة في البرامج التقنية والهندسية التطبيقية",
@@ -47,6 +52,7 @@ const UNIVERSITIES = [
     badgeColor: "bg-orange-600",
   },
   {
+    uniId: "lincoln",
     name: "Lincoln University",
     nameAr: "جامعة لينكولن",
     desc: "برامج معتمدة بتكاليف مناسبة ومجموعة واسعة من التخصصات",
@@ -56,6 +62,7 @@ const UNIVERSITIES = [
     badgeColor: "bg-green-600",
   },
   {
+    uniId: "utp",
     name: "UTP",
     nameAr: "جامعة تكنولوجيا بتروناس",
     desc: "أفضل جامعة هندسية حكومية بسايبر جايا",
@@ -65,6 +72,7 @@ const UNIVERSITIES = [
     badgeColor: "bg-yellow-600",
   },
   {
+    uniId: "upm",
     name: "UPM",
     nameAr: "جامعة بوترا ماليزيا",
     desc: "جامعة بحثية حكومية رائدة بحرم خضراء واسعة",
@@ -74,15 +82,27 @@ const UNIVERSITIES = [
     badgeColor: "bg-emerald-600",
   },
   {
-    name: "UM",
-    nameAr: "جامعة مالايا",
-    desc: "الجامعة رقم 1 في ماليزيا وإحدى أفضل جامعات آسيا",
-    strengths: ["#1 في ماليزيا", "ضمن أفضل 200 عالمياً", "تخصصات شاملة"],
-    img: "/logos/um.png",
-    badge: "#1 Malaysia",
-    badgeColor: "bg-red-700",
+    uniId: "utm",
+    name: "UTM",
+    nameAr: "جامعة تكنولوجيا ماليزيا",
+    desc: "جامعة هندسية حكومية رائدة بحرمين في جوهور بهرو وكوالالمبور",
+    strengths: ["رائدة في الهندسة منذ 1904", "حرمان رئيسيان", "علوم وتكنولوجيا تطبيقية"],
+    img: "/logos/utm.png",
+    badge: "Top Engineering",
+    badgeColor: "bg-sky-600",
   },
   {
+    uniId: "utem",
+    name: "UTeM",
+    nameAr: "جامعة تكنيكال ماليزيا ملاكا",
+    desc: "جامعة تقنية حكومية متخصصة في الهندسة التطبيقية والتصنيع بملاكا",
+    strengths: ["هندسة تقنية تطبيقية", "تصنيع وإلكترونيك", "رسوم تنافسية"],
+    img: "/logos/utem.png",
+    badge: "Technical Engineering",
+    badgeColor: "bg-rose-600",
+  },
+  {
+    uniId: "ucsi",
     name: "UCSI University",
     nameAr: "جامعة UCSI",
     desc: "قوية في الطب والصيدلة والأعمال والتكنولوجيا",
@@ -92,6 +112,7 @@ const UNIVERSITIES = [
     badgeColor: "bg-pink-600",
   },
   {
+    uniId: "sunway",
     name: "Sunway University",
     nameAr: "جامعة صنواي",
     desc: "حرم عصري متكامل بشراكات دولية مرموقة",
@@ -104,6 +125,16 @@ const UNIVERSITIES = [
 
 export default function HomePage() {
   const { go } = useNavigate();
+
+  useEffect(() => {
+    const { state } = getNavState();
+    if (state.scrollTo) {
+      const id = state.scrollTo;
+      setTimeout(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+      }, 80);
+    }
+  }, []);
 
   return (
     <div className="min-h-screen bg-white" dir="rtl">
@@ -170,7 +201,7 @@ export default function HomePage() {
 
           <div className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-xl mx-auto">
             {[
-              { num: "10+", label: "جامعة شريكة" },
+              { num: "11+", label: "جامعة شريكة" },
               { num: "3+", label: "معاهد معتمدة" },
               { num: "100%", label: "شفافية بالأسعار" },
               { num: "24h", label: "رد سريع" },
@@ -197,11 +228,11 @@ export default function HomePage() {
             <div>
               <div className="inline-block bg-green-100 text-green-700 rounded-full px-4 py-1 text-sm font-semibold mb-4">من نحن؟</div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
-                وكالة متخصصة تُرشدك خطوة بخطوة
+                نرافقك نحو دراستك في ماليزيا بكل ثقة
               </h2>
               <p className="text-gray-600 text-lg leading-relaxed mb-6">
-                نحن Algeria2Malaysia، وكالة جزائرية متخصصة في مساعدة الطلاب الجزائريين على الدراسة في ماليزيا.
-                منذ أول استشارة حتى لحظة وصولك، فريقنا معك في كل خطوة.
+                نحن Algeria2Malaysia، جهة متخصصة في توجيه ومرافقة الطلبة الراغبين في الدراسة في ماليزيا.
+                نعمل من خلال شبكة شركائنا ونتعاون مع جهات تعليمية تشمل الجامعات ومعاهد اللغة الإنجليزية، لنساعدك في اختيار الأنسب لك وتسهيل إجراءات التسجيل.
               </p>
               <div className="space-y-4 mb-8">
                 {[
@@ -509,7 +540,7 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-14">
             <div className="inline-block bg-green-100 text-green-700 rounded-full px-4 py-1 text-sm font-semibold mb-4">جامعاتنا الشريكة</div>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">10 جامعات ماليزية معتمدة</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">11 جامعة ماليزية معتمدة</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">نساعدك على الالتحاق بأفضل الجامعات الماليزية المعترف بها دولياً</p>
           </div>
 
@@ -518,7 +549,7 @@ export default function HomePage() {
               <div
                 key={uni.name}
                 className="bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl hover:border-green-200 hover:-translate-y-1 transition-all group cursor-pointer"
-                onClick={() => go("universities")}
+                onClick={() => go("universities", { scrollTo: uni.uniId })}
               >
                 <div className="relative h-40 bg-white flex items-center justify-center px-6 py-4 border-b border-gray-100 overflow-hidden">
                   <img
@@ -607,7 +638,7 @@ export default function HomePage() {
           <div className="grid md:grid-cols-3 gap-6 text-center">
             {[
               { icon: <CheckCircle className="text-green-600 mx-auto mb-3" size={32} />, title: "خبرة موثوقة", desc: "متخصصون في توجيه الطلاب الجزائريين نحو ماليزيا" },
-              { icon: <Star className="text-green-600 mx-auto mb-3" size={32} />, title: "شركاء رسميون", desc: "شراكات مباشرة مع معاهد وجامعات ماليزية معترف بها" },
+              { icon: <Star className="text-green-600 mx-auto mb-3" size={32} />, title: "شركاء رسميون مع وكلاء بالجامعات", desc: "شراكات مع وكلاء رسميين معتمدين لدى المعاهد والجامعات الماليزية" },
               { icon: <Shield className="text-green-600 mx-auto mb-3" size={32} />, title: "أسعار شفافة", desc: "لا رسوم مخفية، كل التكاليف واضحة من البداية" },
             ].map((item) => (
               <div key={item.title} className="p-6 bg-white rounded-2xl border border-gray-100">

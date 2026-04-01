@@ -1,6 +1,8 @@
 export type Page = "home" | "apply" | "thank-you" | "universities" | "uni-apply";
 export interface PageState {
   type?: "institute" | "university";
+  scrollTo?: string;
+  university?: string;
 }
 
 interface NavStore {
@@ -18,7 +20,9 @@ const store: NavStore = {
 export function navigate(page: Page, state: PageState = {}) {
   store.page = page;
   store.state = state;
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  if (!state.scrollTo) {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
   store.listeners.forEach((fn) => fn());
 }
 
