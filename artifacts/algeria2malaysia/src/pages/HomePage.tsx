@@ -300,6 +300,19 @@ export default function HomePage() {
             ))}
           </div>
 
+          {/* Direct flights banner */}
+          <div className="mt-8 bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-amber-200 rounded-2xl px-6 py-5 flex flex-col sm:flex-row items-center gap-4">
+            <div className="flex-shrink-0 w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center text-2xl">
+              ✈️
+            </div>
+            <div className="flex-1 text-center sm:text-right">
+              <div className="inline-block bg-amber-400 text-white text-xs font-bold px-2.5 py-0.5 rounded-full mb-1">جديد 2026</div>
+              <p className="text-gray-800 font-semibold text-base leading-relaxed">
+                أصبح الوصول إلى ماليزيا أكثر سهولة للطلبة الجزائريين — مع إطلاق رحلات مباشرة ابتداءً من سنة 2026، تختصر وقت السفر وتجعل تجربة الانتقال أكثر راحة وسلاسة.
+              </p>
+            </div>
+          </div>
+
           <div className="text-center mt-10">
             <button
               onClick={() => go("apply")}
