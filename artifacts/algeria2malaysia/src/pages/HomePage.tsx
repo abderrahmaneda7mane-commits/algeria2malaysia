@@ -15,7 +15,7 @@ const UNIVERSITIES = [
     nameAr: "جامعة آسيا باسيفيك للتكنولوجيا والابتكار",
     desc: "بيئة دولية متميزة وبرامج تقنية حديثة",
     strengths: ["قوية في IT والتكنولوجيا", "بيئة طلابية دولية", "شراكات عالمية"],
-    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Asia_Pacific_University_Technology_Park_Malaysia.jpg/640px-Asia_Pacific_University_Technology_Park_Malaysia.jpg",
+    img: "/logos/apu.png",
     badge: "IT & Technology",
     badgeColor: "bg-blue-600",
   },
@@ -24,7 +24,7 @@ const UNIVERSITIES = [
     nameAr: "جامعة تايلور",
     desc: "من أعلى الجامعات الخاصة تصنيفاً في ماليزيا",
     strengths: ["الأعلى تصنيفاً بين الخاصة", "قوية في الأعمال والضيافة", "حرم حديث ومجهز"],
-    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Taylor%27s_University_Lakeside_Campus.jpg/640px-Taylor%27s_University_Lakeside_Campus.jpg",
+    img: "/logos/taylors.png",
     badge: "Top Ranked",
     badgeColor: "bg-purple-600",
   },
@@ -33,7 +33,7 @@ const UNIVERSITIES = [
     nameAr: "جامعة الوسائط المتعددة",
     desc: "رائدة في التكنولوجيا والهندسة والاتصالات",
     strengths: ["تكنولوجيا وهندسة", "اتصالات ووسائط متعددة", "حرم سايبر جايا وملاكا"],
-    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/MMU_Cyberjaya.jpg/640px-MMU_Cyberjaya.jpg",
+    img: "/logos/mmu.png",
     badge: "Technology",
     badgeColor: "bg-teal-600",
   },
@@ -42,7 +42,7 @@ const UNIVERSITIES = [
     nameAr: "جامعة كوالالمبور",
     desc: "متخصصة في البرامج التقنية والهندسية التطبيقية",
     strengths: ["هندسة تطبيقية", "برامج تقنية متخصصة", "شهادات دولية معترفة"],
-    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Kuala_Lumpur_City_Centre_by_David_Iliff.jpg/640px-Kuala_Lumpur_City_Centre_by_David_Iliff.jpg",
+    img: "/logos/unikl.png",
     badge: "Engineering",
     badgeColor: "bg-orange-600",
   },
@@ -51,7 +51,7 @@ const UNIVERSITIES = [
     nameAr: "جامعة لينكولن",
     desc: "برامج معتمدة بتكاليف مناسبة ومجموعة واسعة من التخصصات",
     strengths: ["تكاليف معقولة", "تخصصات متنوعة", "قبول مرن"],
-    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Petaling_Jaya_City_Centre_PJCC.jpg/640px-Petaling_Jaya_City_Centre_PJCC.jpg",
+    img: "/logos/lincoln.png",
     badge: "Affordable",
     badgeColor: "bg-green-600",
   },
@@ -60,7 +60,7 @@ const UNIVERSITIES = [
     nameAr: "جامعة تكنولوجيا بتروناس",
     desc: "أفضل جامعة هندسية حكومية بسايبر جايا",
     strengths: ["هندسة بترولية وكيميائية", "من أفضل جامعات ماليزيا", "منح دراسية متاحة"],
-    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/UTPcampus.jpg/640px-UTPcampus.jpg",
+    img: "/logos/utp.png",
     badge: "Top Engineering",
     badgeColor: "bg-yellow-600",
   },
@@ -69,7 +69,7 @@ const UNIVERSITIES = [
     nameAr: "جامعة بوترا ماليزيا",
     desc: "جامعة بحثية حكومية رائدة بحرم خضراء واسعة",
     strengths: ["بحث علمي متقدم", "حرم جامعي ضخم", "تخصصات زراعية وبيئية"],
-    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/UPM_Serdang.jpg/640px-UPM_Serdang.jpg",
+    img: "/logos/upm.png",
     badge: "Research",
     badgeColor: "bg-emerald-600",
   },
@@ -78,7 +78,7 @@ const UNIVERSITIES = [
     nameAr: "جامعة مالايا",
     desc: "الجامعة رقم 1 في ماليزيا وإحدى أفضل جامعات آسيا",
     strengths: ["#1 في ماليزيا", "ضمن أفضل 200 عالمياً", "تخصصات شاملة"],
-    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/University_of_Malaya_Library.jpg/640px-University_of_Malaya_Library.jpg",
+    img: "/logos/um.png",
     badge: "#1 Malaysia",
     badgeColor: "bg-red-700",
   },
@@ -87,7 +87,7 @@ const UNIVERSITIES = [
     nameAr: "جامعة UCSI",
     desc: "قوية في الطب والصيدلة والأعمال والتكنولوجيا",
     strengths: ["طب وصيدلة", "أعمال وتكنولوجيا", "اعتماد دولي"],
-    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/UCSI_University.jpg/640px-UCSI_University.jpg",
+    img: "/logos/ucsi.png",
     badge: "Medicine & Business",
     badgeColor: "bg-pink-600",
   },
@@ -96,7 +96,7 @@ const UNIVERSITIES = [
     nameAr: "جامعة صنواي",
     desc: "حرم عصري متكامل بشراكات دولية مرموقة",
     strengths: ["حرم حديث ومتكامل", "شراكات دولية", "موقع مثالي بكوالالمبور"],
-    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Sunway_University.jpg/640px-Sunway_University.jpg",
+    img: "/logos/sunway.png",
     badge: "Modern Campus",
     badgeColor: "bg-indigo-600",
   },
@@ -520,18 +520,14 @@ export default function HomePage() {
                 className="bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl hover:border-green-200 hover:-translate-y-1 transition-all group cursor-pointer"
                 onClick={() => go("universities")}
               >
-                <div className="relative h-40 overflow-hidden">
+                <div className="relative h-40 bg-white flex items-center justify-center px-6 py-4 border-b border-gray-100 overflow-hidden">
                   <img
                     src={uni.img}
                     alt={uni.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src = `https://images.unsplash.com/photo-1562774053-701939374585?w=600&q=80`;
-                    }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                  <div className={`absolute bottom-3 right-3 ${uni.badgeColor} text-white text-xs font-bold px-2 py-1 rounded-lg`}>
+                  <div className={`absolute bottom-3 right-3 ${uni.badgeColor} text-white text-xs font-bold px-2 py-1 rounded-lg shadow`}>
                     {uni.badge}
                   </div>
                 </div>
