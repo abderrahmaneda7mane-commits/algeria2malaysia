@@ -15,7 +15,7 @@ const UNIVERSITIES = [
     nameAr: "جامعة آسيا باسيفيك للتكنولوجيا والابتكار",
     desc: "بيئة دولية متميزة وبرامج تقنية حديثة",
     strengths: ["قوية في IT والتكنولوجيا", "بيئة طلابية دولية", "شراكات عالمية"],
-    img: "https://images.unsplash.com/photo-1562774053-701939374585?w=600&q=80",
+    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Asia_Pacific_University_Technology_Park_Malaysia.jpg/640px-Asia_Pacific_University_Technology_Park_Malaysia.jpg",
     badge: "IT & Technology",
     badgeColor: "bg-blue-600",
   },
@@ -24,7 +24,7 @@ const UNIVERSITIES = [
     nameAr: "جامعة تايلور",
     desc: "من أعلى الجامعات الخاصة تصنيفاً في ماليزيا",
     strengths: ["الأعلى تصنيفاً بين الخاصة", "قوية في الأعمال والضيافة", "حرم حديث ومجهز"],
-    img: "https://images.unsplash.com/photo-1607237138185-eedd9c632b0b?w=600&q=80",
+    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Taylor%27s_University_Lakeside_Campus.jpg/640px-Taylor%27s_University_Lakeside_Campus.jpg",
     badge: "Top Ranked",
     badgeColor: "bg-purple-600",
   },
@@ -33,7 +33,7 @@ const UNIVERSITIES = [
     nameAr: "جامعة الوسائط المتعددة",
     desc: "رائدة في التكنولوجيا والهندسة والاتصالات",
     strengths: ["تكنولوجيا وهندسة", "اتصالات ووسائط متعددة", "حرم سايبر جايا وملاكا"],
-    img: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=600&q=80",
+    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/MMU_Cyberjaya.jpg/640px-MMU_Cyberjaya.jpg",
     badge: "Technology",
     badgeColor: "bg-teal-600",
   },
@@ -42,7 +42,7 @@ const UNIVERSITIES = [
     nameAr: "جامعة كوالالمبور",
     desc: "متخصصة في البرامج التقنية والهندسية التطبيقية",
     strengths: ["هندسة تطبيقية", "برامج تقنية متخصصة", "شهادات دولية معترفة"],
-    img: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80",
+    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Kuala_Lumpur_City_Centre_by_David_Iliff.jpg/640px-Kuala_Lumpur_City_Centre_by_David_Iliff.jpg",
     badge: "Engineering",
     badgeColor: "bg-orange-600",
   },
@@ -51,7 +51,7 @@ const UNIVERSITIES = [
     nameAr: "جامعة لينكولن",
     desc: "برامج معتمدة بتكاليف مناسبة ومجموعة واسعة من التخصصات",
     strengths: ["تكاليف معقولة", "تخصصات متنوعة", "قبول مرن"],
-    img: "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?w=600&q=80",
+    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Petaling_Jaya_City_Centre_PJCC.jpg/640px-Petaling_Jaya_City_Centre_PJCC.jpg",
     badge: "Affordable",
     badgeColor: "bg-green-600",
   },
@@ -60,7 +60,7 @@ const UNIVERSITIES = [
     nameAr: "جامعة تكنولوجيا بتروناس",
     desc: "أفضل جامعة هندسية حكومية بسايبر جايا",
     strengths: ["هندسة بترولية وكيميائية", "من أفضل جامعات ماليزيا", "منح دراسية متاحة"],
-    img: "https://images.unsplash.com/photo-1581093458791-9f3c3250a8c2?w=600&q=80",
+    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/UTPcampus.jpg/640px-UTPcampus.jpg",
     badge: "Top Engineering",
     badgeColor: "bg-yellow-600",
   },
@@ -69,7 +69,7 @@ const UNIVERSITIES = [
     nameAr: "جامعة بوترا ماليزيا",
     desc: "جامعة بحثية حكومية رائدة بحرم خضراء واسعة",
     strengths: ["بحث علمي متقدم", "حرم جامعي ضخم", "تخصصات زراعية وبيئية"],
-    img: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=600&q=80",
+    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/UPM_Serdang.jpg/640px-UPM_Serdang.jpg",
     badge: "Research",
     badgeColor: "bg-emerald-600",
   },
@@ -78,7 +78,7 @@ const UNIVERSITIES = [
     nameAr: "جامعة مالايا",
     desc: "الجامعة رقم 1 في ماليزيا وإحدى أفضل جامعات آسيا",
     strengths: ["#1 في ماليزيا", "ضمن أفضل 200 عالمياً", "تخصصات شاملة"],
-    img: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&q=80",
+    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/University_of_Malaya_Library.jpg/640px-University_of_Malaya_Library.jpg",
     badge: "#1 Malaysia",
     badgeColor: "bg-red-700",
   },
@@ -87,7 +87,7 @@ const UNIVERSITIES = [
     nameAr: "جامعة UCSI",
     desc: "قوية في الطب والصيدلة والأعمال والتكنولوجيا",
     strengths: ["طب وصيدلة", "أعمال وتكنولوجيا", "اعتماد دولي"],
-    img: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&q=80",
+    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/UCSI_University.jpg/640px-UCSI_University.jpg",
     badge: "Medicine & Business",
     badgeColor: "bg-pink-600",
   },
@@ -96,7 +96,7 @@ const UNIVERSITIES = [
     nameAr: "جامعة صنواي",
     desc: "حرم عصري متكامل بشراكات دولية مرموقة",
     strengths: ["حرم حديث ومتكامل", "شراكات دولية", "موقع مثالي بكوالالمبور"],
-    img: "https://images.unsplash.com/photo-1571260899304-425eee4c7efc?w=600&q=80",
+    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Sunway_University.jpg/640px-Sunway_University.jpg",
     badge: "Modern Campus",
     badgeColor: "bg-indigo-600",
   },
@@ -555,10 +555,18 @@ export default function HomePage() {
           <div className="text-center mt-12 flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={() => go("universities")}
-              className="bg-green-700 hover:bg-green-800 text-white px-10 py-4 rounded-full font-bold text-lg transition-all shadow-xl hover:shadow-2xl flex items-center gap-3 mx-auto group"
+              className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-full font-bold text-lg transition-all shadow-xl hover:shadow-2xl flex items-center gap-3 group"
             >
               <Building2 size={20} />
-              <span>عرض تفاصيل جميع الجامعات والأسعار</span>
+              <span>عرض جميع الجامعات والأسعار</span>
+              <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
+            </button>
+            <button
+              onClick={() => go("uni-apply")}
+              className="bg-amber-500 hover:bg-amber-600 text-white px-8 py-4 rounded-full font-bold text-lg transition-all shadow-xl flex items-center gap-3 group"
+            >
+              <span>📄</span>
+              <span>اطلب Offer Letter الآن</span>
               <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
             </button>
           </div>

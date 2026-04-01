@@ -450,10 +450,11 @@ export default function UniversitiesPage() {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button
-            onClick={() => go("apply", { type: "university" })}
+            onClick={() => go("uni-apply")}
             className="bg-white text-green-800 px-8 py-4 rounded-full font-bold text-lg hover:bg-green-50 transition-all shadow-lg flex items-center justify-center gap-2 group"
           >
-            <span>قدّم الآن</span>
+            <span>📄</span>
+            <span>اطلب Offer Letter الآن</span>
             <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
           </button>
           <a

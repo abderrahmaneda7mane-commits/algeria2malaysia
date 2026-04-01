@@ -1,4 +1,4 @@
-export type Page = "home" | "apply" | "thank-you" | "universities";
+export type Page = "home" | "apply" | "thank-you" | "universities" | "uni-apply";
 export interface PageState {
   type?: "institute" | "university";
 }
