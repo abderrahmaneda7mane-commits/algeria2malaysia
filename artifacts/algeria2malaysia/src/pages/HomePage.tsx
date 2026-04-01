@@ -1,11 +1,127 @@
-import { GraduationCap, Globe, DollarSign, Shield, Star, CheckCircle, ArrowLeft, Building2, BookOpen, Users, Award } from "lucide-react";
+import { GraduationCap, Globe, DollarSign, Shield, Star, CheckCircle, ArrowLeft, Building2, BookOpen, Users, Award, Phone, MapPin, Wifi, Home, Plane, MessageCircle } from "lucide-react";
 import { useNavigate } from "../hooks/useNavigate";
+
+const WA_LINK = "https://wa.me/601112200603";
+
+const WHATSAPP_SVG = (
+  <svg viewBox="0 0 24 24" className="w-full h-full fill-current">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+  </svg>
+);
+
+const UNIVERSITIES = [
+  {
+    name: "APU",
+    nameAr: "جامعة آسيا باسيفيك",
+    desc: "بيئة دولية متميزة وبرامج تقنية حديثة",
+    strengths: ["قوية في IT والتكنولوجيا", "بيئة طلابية دولية", "شراكات عالمية"],
+    img: "https://images.unsplash.com/photo-1562774053-701939374585?w=600&q=80",
+    badge: "IT & Technology",
+    badgeColor: "bg-blue-600",
+  },
+  {
+    name: "Taylor's University",
+    nameAr: "جامعة تايلور",
+    desc: "من أعلى الجامعات الخاصة تصنيفاً في ماليزيا",
+    strengths: ["الأعلى تصنيفاً بين الخاصة", "قوية في الأعمال والضيافة", "حرم حديث ومجهز"],
+    img: "https://images.unsplash.com/photo-1607237138185-eedd9c632b0b?w=600&q=80",
+    badge: "Top Ranked",
+    badgeColor: "bg-purple-600",
+  },
+  {
+    name: "MMU",
+    nameAr: "جامعة الوسائط المتعددة",
+    desc: "رائدة في التكنولوجيا والهندسة والاتصالات",
+    strengths: ["تكنولوجيا وهندسة", "اتصالات ووسائط متعددة", "حرم سايبر جايا وملاكا"],
+    img: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=600&q=80",
+    badge: "Technology",
+    badgeColor: "bg-teal-600",
+  },
+  {
+    name: "UniKL",
+    nameAr: "جامعة كوالالمبور",
+    desc: "متخصصة في البرامج التقنية والهندسية التطبيقية",
+    strengths: ["هندسة تطبيقية", "برامج تقنية متخصصة", "شهادات دولية معترفة"],
+    img: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80",
+    badge: "Engineering",
+    badgeColor: "bg-orange-600",
+  },
+  {
+    name: "Lincoln University",
+    nameAr: "جامعة لينكولن",
+    desc: "برامج معتمدة بتكاليف مناسبة ومجموعة واسعة من التخصصات",
+    strengths: ["تكاليف معقولة", "تخصصات متنوعة", "قبول مرن"],
+    img: "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?w=600&q=80",
+    badge: "Affordable",
+    badgeColor: "bg-green-600",
+  },
+  {
+    name: "UTP",
+    nameAr: "جامعة تكنولوجيا بتروناس",
+    desc: "أفضل جامعة هندسية حكومية بسايبر جايا",
+    strengths: ["هندسة بترولية وكيميائية", "من أفضل جامعات ماليزيا", "منح دراسية متاحة"],
+    img: "https://images.unsplash.com/photo-1581093458791-9f3c3250a8c2?w=600&q=80",
+    badge: "Top Engineering",
+    badgeColor: "bg-yellow-600",
+  },
+  {
+    name: "UPM",
+    nameAr: "جامعة بوترا ماليزيا",
+    desc: "جامعة بحثية حكومية رائدة بحرم خضراء واسعة",
+    strengths: ["بحث علمي متقدم", "حرم جامعي ضخم", "تخصصات زراعية وبيئية"],
+    img: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=600&q=80",
+    badge: "Research",
+    badgeColor: "bg-emerald-600",
+  },
+  {
+    name: "UM",
+    nameAr: "جامعة مالايا",
+    desc: "الجامعة رقم 1 في ماليزيا وإحدى أفضل جامعات آسيا",
+    strengths: ["#1 في ماليزيا", "ضمن أفضل 200 عالمياً", "تخصصات شاملة"],
+    img: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&q=80",
+    badge: "#1 Malaysia",
+    badgeColor: "bg-red-700",
+  },
+  {
+    name: "UCSI University",
+    nameAr: "جامعة UCSI",
+    desc: "قوية في الطب والصيدلة والأعمال والتكنولوجيا",
+    strengths: ["طب وصيدلة", "أعمال وتكنولوجيا", "اعتماد دولي"],
+    img: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&q=80",
+    badge: "Medicine & Business",
+    badgeColor: "bg-pink-600",
+  },
+  {
+    name: "Sunway University",
+    nameAr: "جامعة صنواي",
+    desc: "حرم عصري متكامل بشراكات دولية مرموقة",
+    strengths: ["حرم حديث ومتكامل", "شراكات دولية", "موقع مثالي بكوالالمبور"],
+    img: "https://images.unsplash.com/photo-1571260899304-425eee4c7efc?w=600&q=80",
+    badge: "Modern Campus",
+    badgeColor: "bg-indigo-600",
+  },
+];
 
 export default function HomePage() {
   const { go } = useNavigate();
 
   return (
     <div className="min-h-screen bg-white" dir="rtl">
+
+      {/* WhatsApp Floating Button */}
+      <a
+        href={WA_LINK}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 left-6 z-50 w-14 h-14 bg-green-500 hover:bg-green-600 text-white rounded-full shadow-2xl flex items-center justify-center transition-all hover:scale-110 hover:shadow-green-400/50"
+        aria-label="تواصل عبر واتساب"
+      >
+        <div className="w-7 h-7">{WHATSAPP_SVG}</div>
+        <span className="absolute -top-10 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-xs px-3 py-1 rounded-full whitespace-nowrap opacity-0 group-hover:opacity-100 pointer-events-none">
+          تواصل معنا
+        </span>
+      </a>
+
       {/* Hero Section */}
       <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-green-900 via-green-800 to-green-700 pt-16">
         <div className="absolute inset-0 opacity-10">
@@ -31,9 +147,9 @@ export default function HomePage() {
             <span className="block text-green-300 mt-2">في قلب ماليزيا</span>
           </h1>
 
-          <p className="text-lg md:text-xl text-green-100 mb-8 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl text-green-100 mb-10 max-w-2xl mx-auto leading-relaxed">
             نساعد الطلاب الجزائريين على الدراسة في أفضل المعاهد والجامعات الماليزية.
-            خطوة واحدة تفصلك عن مستقبل أفضل.
+            استشارة مجانية — نرافقك حتى تطأ أرض ماليزيا.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -41,21 +157,22 @@ export default function HomePage() {
               onClick={() => go("apply")}
               className="bg-white text-green-800 px-8 py-4 rounded-full font-bold text-lg hover:bg-green-50 transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 group"
             >
-              <span>ابدأ طلبك الآن</span>
+              <span>ابدأ رحلتك الآن</span>
               <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
             </button>
             <a
-              href="#why"
+              href="#about"
               className="border-2 border-white/50 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/10 transition-all"
             >
               اعرف أكثر
             </a>
           </div>
 
-          <div className="mt-16 grid grid-cols-3 gap-6 max-w-lg mx-auto">
+          <div className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-xl mx-auto">
             {[
+              { num: "10+", label: "جامعة شريكة" },
               { num: "3+", label: "معاهد معتمدة" },
-              { num: "100%", label: "شفافية في الأسعار" },
+              { num: "100%", label: "شفافية بالأسعار" },
               { num: "24h", label: "رد سريع" },
             ].map((stat) => (
               <div key={stat.label} className="text-center">
@@ -73,8 +190,59 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* About Us Section */}
+      <section id="about" className="py-20 bg-white">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="inline-block bg-green-100 text-green-700 rounded-full px-4 py-1 text-sm font-semibold mb-4">من نحن؟</div>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
+                وكالة متخصصة تُرشدك خطوة بخطوة
+              </h2>
+              <p className="text-gray-600 text-lg leading-relaxed mb-6">
+                نحن Algeria2Malaysia، وكالة جزائرية متخصصة في مساعدة الطلاب الجزائريين على الدراسة في ماليزيا.
+                منذ أول استشارة حتى لحظة وصولك، فريقنا معك في كل خطوة.
+              </p>
+              <div className="space-y-4 mb-8">
+                {[
+                  { icon: <CheckCircle className="text-green-600 flex-shrink-0" size={20} />, text: "استشارة مجانية 100% بدون أي التزام" },
+                  { icon: <CheckCircle className="text-green-600 flex-shrink-0" size={20} />, text: "نختار لك أنسب معهد أو جامعة حسب وضعك" },
+                  { icon: <CheckCircle className="text-green-600 flex-shrink-0" size={20} />, text: "نتولى إجراءات التأشيرة والقبول بالكامل" },
+                  { icon: <CheckCircle className="text-green-600 flex-shrink-0" size={20} />, text: "نرافقك حتى وصولك إلى ماليزيا" },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-3">
+                    {item.icon}
+                    <span className="text-gray-700">{item.text}</span>
+                  </div>
+                ))}
+              </div>
+              <button
+                onClick={() => go("apply")}
+                className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-full font-bold text-lg transition-all shadow-lg hover:shadow-xl flex items-center gap-2 group w-fit"
+              >
+                <span>احجز استشارتك المجانية</span>
+                <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
+              </button>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              {[
+                { num: "مجاني", label: "الاستشارة الأولى", color: "bg-green-50 border-green-200" },
+                { num: "24h", label: "وقت الرد", color: "bg-blue-50 border-blue-200" },
+                { num: "شامل", label: "دعم التأشيرة", color: "bg-purple-50 border-purple-200" },
+                { num: "متكامل", label: "من الملف للوصول", color: "bg-orange-50 border-orange-200" },
+              ].map((item) => (
+                <div key={item.label} className={`${item.color} border rounded-2xl p-6 text-center`}>
+                  <div className="text-3xl font-bold text-gray-900 mb-1">{item.num}</div>
+                  <div className="text-sm text-gray-600">{item.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Why Malaysia Section */}
-      <section id="why" className="py-20 bg-white">
+      <section id="why" className="py-20 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-14">
             <div className="inline-block bg-green-100 text-green-700 rounded-full px-4 py-1 text-sm font-semibold mb-4">لماذا ماليزيا؟</div>
@@ -84,41 +252,14 @@ export default function HomePage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              {
-                icon: <DollarSign className="text-green-600" size={28} />,
-                title: "أسعار في المتناول",
-                desc: "تكاليف الدراسة والمعيشة أقل بكثير مقارنة بأوروبا وأمريكا مع نفس مستوى الجودة",
-              },
-              {
-                icon: <Globe className="text-green-600" size={28} />,
-                title: "التعليم باللغة الإنجليزية",
-                desc: "جميع البرامج تدرس باللغة الإنجليزية مع شهادات معترف بها دولياً",
-              },
-              {
-                icon: <Shield className="text-green-600" size={28} />,
-                title: "بيئة إسلامية آمنة",
-                desc: "ماليزيا دولة إسلامية تتميز بالأمان والاستقرار وتوفر بيئة مريحة للطلاب العرب",
-              },
-              {
-                icon: <Award className="text-green-600" size={28} />,
-                title: "جامعات معترف بها دولياً",
-                desc: "شهادات من جامعات معترف بها في الجزائر وأوروبا وكل أنحاء العالم",
-              },
-              {
-                icon: <Users className="text-green-600" size={28} />,
-                title: "مجتمع عربي كبير",
-                desc: "مجتمع طلابي عربي جزائري نشط يساعدك على الاندماج بسرعة ودون عزلة",
-              },
-              {
-                icon: <GraduationCap className="text-green-600" size={28} />,
-                title: "مسارات متعددة",
-                desc: "من تحسين الإنجليزي إلى البكالوريوس والماستر في مختلف التخصصات",
-              },
+              { icon: <DollarSign className="text-green-600" size={28} />, title: "أسعار في المتناول", desc: "تكاليف الدراسة والمعيشة أقل بكثير مقارنة بأوروبا وأمريكا مع نفس مستوى الجودة" },
+              { icon: <Globe className="text-green-600" size={28} />, title: "التعليم باللغة الإنجليزية", desc: "جميع البرامج تدرس باللغة الإنجليزية مع شهادات معترف بها دولياً" },
+              { icon: <Shield className="text-green-600" size={28} />, title: "بيئة إسلامية آمنة", desc: "ماليزيا دولة إسلامية تتميز بالأمان والاستقرار وتوفر بيئة مريحة للطلاب العرب" },
+              { icon: <Award className="text-green-600" size={28} />, title: "جامعات معترف بها دولياً", desc: "شهادات من جامعات معترف بها في الجزائر وأوروبا وكل أنحاء العالم" },
+              { icon: <Users className="text-green-600" size={28} />, title: "مجتمع عربي كبير", desc: "مجتمع طلابي عربي جزائري نشط يساعدك على الاندماج بسرعة ودون عزلة" },
+              { icon: <GraduationCap className="text-green-600" size={28} />, title: "مسارات متعددة", desc: "من تحسين الإنجليزي إلى البكالوريوس والماستر في مختلف التخصصات" },
             ].map((item) => (
-              <div
-                key={item.title}
-                className="bg-white border border-gray-100 rounded-2xl p-6 hover:shadow-lg hover:border-green-200 transition-all group"
-              >
+              <div key={item.title} className="bg-white border border-gray-100 rounded-2xl p-6 hover:shadow-lg hover:border-green-200 transition-all group">
                 <div className="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center mb-4 group-hover:bg-green-100 transition-colors">
                   {item.icon}
                 </div>
@@ -127,19 +268,91 @@ export default function HomePage() {
               </div>
             ))}
           </div>
+
+          <div className="text-center mt-10">
+            <button
+              onClick={() => go("apply")}
+              className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-full font-bold text-lg transition-all shadow-lg flex items-center gap-2 mx-auto group"
+            >
+              <span>ابدأ طلبك الآن</span>
+              <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
+            </button>
+          </div>
         </div>
       </section>
 
-      {/* Services Section */}
-      <section id="services" className="py-20 bg-gradient-to-b from-green-50 to-white">
+      {/* Our Services — Full 6-card grid */}
+      <section id="services" className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-14">
             <div className="inline-block bg-green-100 text-green-700 rounded-full px-4 py-1 text-sm font-semibold mb-4">خدماتنا</div>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">ماذا نقدم لك؟</h2>
-            <p className="text-gray-600 max-w-xl mx-auto">نرافقك في كل خطوة من بداية التقديم حتى وصولك إلى ماليزيا</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">كل ما تحتاجه في مكان واحد</h2>
+            <p className="text-gray-600 max-w-xl mx-auto">نقدم خدمة شاملة من أول استشارة حتى وصولك إلى ماليزيا</p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+            {[
+              {
+                icon: <MessageCircle className="text-green-600" size={32} />,
+                title: "استشارة مجانية",
+                desc: "جلسة استشارية مجانية لتقييم وضعك وتحديد أفضل مسار دراسي يناسبك",
+                highlight: true,
+              },
+              {
+                icon: <GraduationCap className="text-blue-600" size={32} />,
+                title: "التسجيل والقبول",
+                desc: "نتولى كامل إجراءات التسجيل والقبول في المعاهد والجامعات الماليزية",
+                highlight: false,
+              },
+              {
+                icon: <Globe className="text-purple-600" size={32} />,
+                title: "معالجة التأشيرة الكاملة",
+                desc: "نعد ملفك كاملاً ونتابع التأشيرة الطلابية حتى الحصول عليها — بدون أي تعقيد",
+                highlight: false,
+              },
+              {
+                icon: <Plane className="text-orange-600" size={32} />,
+                title: "الاستقبال بالمطار",
+                desc: "فريقنا في كوالالمبور يستقبلك لحظة وصولك ويوصلك لسكنك بأمان",
+                highlight: false,
+              },
+              {
+                icon: <Wifi className="text-teal-600" size={32} />,
+                title: "شريحة الاتصال (SIM)",
+                desc: "نوفر لك شريحة اتصال محلية فور وصولك حتى تبقى متواصلاً مع عائلتك",
+                highlight: false,
+              },
+              {
+                icon: <Home className="text-pink-600" size={32} />,
+                title: "دعم السكن",
+                desc: "نساعدك في إيجاد سكن مناسب حسب ميزانيتك وقريب من جامعتك",
+                highlight: false,
+              },
+            ].map((svc) => (
+              <div
+                key={svc.title}
+                className={`rounded-2xl p-6 border transition-all hover:shadow-lg group ${
+                  svc.highlight
+                    ? "bg-green-700 border-green-600 text-white"
+                    : "bg-white border-gray-100 hover:border-green-200"
+                }`}
+              >
+                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-4 ${svc.highlight ? "bg-white/20" : "bg-gray-50 group-hover:bg-green-50"} transition-colors`}>
+                  {svc.highlight
+                    ? <MessageCircle className="text-white" size={32} />
+                    : svc.icon}
+                </div>
+                <h3 className={`font-bold text-xl mb-3 ${svc.highlight ? "text-white" : "text-gray-900"}`}>{svc.title}</h3>
+                <p className={`text-sm leading-relaxed ${svc.highlight ? "text-green-100" : "text-gray-600"}`}>{svc.desc}</p>
+                {svc.highlight && (
+                  <div className="mt-4 inline-block bg-white text-green-700 text-xs font-bold px-3 py-1 rounded-full">مجاني تماماً ✓</div>
+                )}
+              </div>
+            ))}
+          </div>
+
+          {/* Study type cards */}
+          <div className="grid md:grid-cols-2 gap-6">
             <div
               onClick={() => go("apply", { type: "institute" })}
               className="relative overflow-hidden bg-gradient-to-br from-green-700 to-green-900 rounded-3xl p-8 text-white cursor-pointer hover:shadow-2xl transition-all hover:-translate-y-1 group"
@@ -147,11 +360,7 @@ export default function HomePage() {
               <div className="absolute top-0 left-0 w-40 h-40 bg-white/5 rounded-full -translate-x-10 -translate-y-10"></div>
               <BookOpen className="mb-4" size={40} />
               <h3 className="text-2xl font-bold mb-3">معاهد اللغة الإنجليزية</h3>
-              <p className="text-green-100 leading-relaxed mb-6">
-                IELTS • إنجليزي عام • مسار الجامعة
-                <br />
-                معاهد معتمدة في كوالالمبور بأسعار شفافة
-              </p>
+              <p className="text-green-100 leading-relaxed mb-6">IELTS • إنجليزي عام • مسار الجامعة<br />معاهد معتمدة في كوالالمبور بأسعار شفافة</p>
               <div className="flex items-center gap-2 text-green-300 font-semibold group-hover:gap-4 transition-all">
                 <span>اختر معهدك</span>
                 <ArrowLeft size={18} />
@@ -165,16 +374,54 @@ export default function HomePage() {
               <div className="absolute top-0 left-0 w-40 h-40 bg-white/5 rounded-full -translate-x-10 -translate-y-10"></div>
               <Building2 className="mb-4" size={40} />
               <h3 className="text-2xl font-bold mb-3">القبول الجامعي</h3>
-              <p className="text-gray-300 leading-relaxed mb-6">
-                بكالوريوس • ماستر • دكتوراه
-                <br />
-                جامعات معترف بها مع تسهيل إجراءات التأشيرة
-              </p>
+              <p className="text-gray-300 leading-relaxed mb-6">بكالوريوس • ماستر • دكتوراه<br />جامعات معترف بها مع تسهيل إجراءات التأشيرة</p>
               <div className="flex items-center gap-2 text-gray-400 font-semibold group-hover:gap-4 transition-all">
                 <span>ابدأ طلبك</span>
                 <ArrowLeft size={18} />
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <section id="how" className="py-20 bg-green-50">
+        <div className="max-w-5xl mx-auto px-4">
+          <div className="text-center mb-14">
+            <div className="inline-block bg-green-200 text-green-800 rounded-full px-4 py-1 text-sm font-semibold mb-4">كيف يعمل؟</div>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">4 خطوات فقط — نحن نتكفل بالباقي</h2>
+            <p className="text-gray-500">ملأ النموذج واترك الباقي علينا</p>
+          </div>
+
+          <div className="relative">
+            <div className="hidden md:block absolute top-10 right-16 left-16 h-0.5 bg-green-300 z-0"></div>
+            <div className="grid md:grid-cols-4 gap-6 relative z-10">
+              {[
+                { step: "01", icon: "📝", title: "املأ النموذج", desc: "استغرق 3 دقائق فقط، أجب على بعض الأسئلة عن هدفك وميزانيتك" },
+                { step: "02", icon: "🔍", title: "نراجع ملفك", desc: "فريقنا يراجع معلوماتك ويحدد أنسب خيار لك" },
+                { step: "03", icon: "💬", title: "نتواصل معك", desc: "نتصل بك عبر واتساب خلال 24 ساعة لمناقشة الخطوات" },
+                { step: "04", icon: "✈️", title: "نتكفل بكل شيء", desc: "التأشيرة، القبول، السكن، الاستقبال — كل شيء بيدنا" },
+              ].map((item) => (
+                <div key={item.step} className="text-center">
+                  <div className="w-20 h-20 bg-white border-4 border-green-200 text-green-800 rounded-full flex flex-col items-center justify-center mx-auto mb-4 shadow-md">
+                    <span className="text-2xl">{item.icon}</span>
+                  </div>
+                  <div className="text-xs font-bold text-green-600 mb-1">خطوة {item.step}</div>
+                  <h3 className="font-bold text-gray-900 mb-2 text-lg">{item.title}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="text-center mt-12">
+            <button
+              onClick={() => go("apply")}
+              className="bg-green-700 hover:bg-green-800 text-white px-10 py-4 rounded-full font-bold text-xl transition-all shadow-xl hover:shadow-2xl flex items-center gap-3 mx-auto group"
+            >
+              <span>ابدأ الآن — مجاناً</span>
+              <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
+            </button>
           </div>
         </div>
       </section>
@@ -185,6 +432,7 @@ export default function HomePage() {
           <div className="text-center mb-14">
             <div className="inline-block bg-green-100 text-green-700 rounded-full px-4 py-1 text-sm font-semibold mb-4">شركاؤنا</div>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">معاهدنا المعتمدة</h2>
+            <p className="text-gray-600">معاهد لغة إنجليزية معتمدة في قلب كوالالمبور</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
@@ -195,7 +443,6 @@ export default function HomePage() {
                 badge: "إنجليزي مكثف",
                 color: "bg-teal-600",
                 logo: "/stratford-logo.png",
-                logoBg: "bg-white",
                 desc: "برامج مكثفة 4-6 ساعات/يوم في موقع متميز بـ KLCC",
                 from: "2,500 RM",
                 fromEur: "≈ 500 €",
@@ -206,7 +453,6 @@ export default function HomePage() {
                 badge: "IELTS & IEP",
                 color: "bg-red-800",
                 logo: "/bigben-logo.png",
-                logoBg: "bg-white",
                 desc: "المعهد الوحيد في ماليزيا المعتمد من Pearson. IELTS وبرامج أكاديمية متكاملة",
                 from: "2,618 RM",
                 fromEur: "≈ 524 €",
@@ -217,7 +463,6 @@ export default function HomePage() {
                 badge: "Cambridge & IELTS",
                 color: "bg-orange-600",
                 logo: "/erican-logo.png",
-                logoBg: "bg-navy-900",
                 desc: "مركز معتمد لامتحانات Cambridge وIDP IELTS. 400,000+ متعلم",
                 from: "2,000 RM",
                 fromEur: "≈ 400 €",
@@ -231,9 +476,7 @@ export default function HomePage() {
                       <img src={inst.logo} alt={inst.name} className="w-full h-full object-contain" />
                     </div>
                     <div>
-                      <div className={`inline-block ${inst.color} text-white text-xs font-semibold px-3 py-1 rounded-full mb-1`}>
-                        {inst.badge}
-                      </div>
+                      <div className={`inline-block ${inst.color} text-white text-xs font-semibold px-3 py-1 rounded-full mb-1`}>{inst.badge}</div>
                       <h3 className="font-bold text-gray-900 text-lg leading-tight">{inst.nameAr}</h3>
                       <p className="text-gray-400 text-xs">{inst.name}</p>
                     </div>
@@ -247,35 +490,77 @@ export default function HomePage() {
               </div>
             ))}
           </div>
+
+          <div className="text-center mt-10">
+            <button
+              onClick={() => go("apply", { type: "institute" })}
+              className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-full font-bold text-lg transition-all shadow-lg flex items-center gap-2 mx-auto group"
+            >
+              <BookOpen size={20} />
+              <span>اختر معهدك الآن</span>
+              <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
+            </button>
+          </div>
         </div>
       </section>
 
-      {/* How it Works */}
-      <section className="py-20 bg-green-50">
-        <div className="max-w-5xl mx-auto px-4">
+      {/* Partner Universities */}
+      <section id="universities" className="py-20 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-14">
-            <div className="inline-block bg-green-200 text-green-800 rounded-full px-4 py-1 text-sm font-semibold mb-4">كيف يعمل النظام؟</div>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">4 خطوات فقط</h2>
+            <div className="inline-block bg-green-100 text-green-700 rounded-full px-4 py-1 text-sm font-semibold mb-4">جامعاتنا الشريكة</div>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">10 جامعات ماليزية معتمدة</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">نساعدك على الالتحاق بأفضل الجامعات الماليزية المعترف بها دولياً</p>
           </div>
 
-          <div className="relative">
-            <div className="hidden md:block absolute top-8 right-12 left-12 h-0.5 bg-green-200"></div>
-            <div className="grid md:grid-cols-4 gap-6">
-              {[
-                { step: "01", title: "اختر نوع الدراسة", desc: "معهد لغة أو جامعة" },
-                { step: "02", title: "أجب على الأسئلة", desc: "ميزانيتك وهدفك وتفاصيلك" },
-                { step: "03", title: "احصل على التوصية", desc: "نقترح لك أنسب خيار تلقائياً" },
-                { step: "04", title: "نتواصل معك", desc: "فريقنا يتابعك عبر واتساب" },
-              ].map((item) => (
-                <div key={item.step} className="text-center relative">
-                  <div className="w-16 h-16 bg-green-700 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4 shadow-md">
-                    {item.step}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+            {UNIVERSITIES.map((uni) => (
+              <div
+                key={uni.name}
+                className="bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl hover:border-green-200 hover:-translate-y-1 transition-all group cursor-pointer"
+                onClick={() => go("apply", { type: "university" })}
+              >
+                <div className="relative h-40 overflow-hidden">
+                  <img
+                    src={uni.img}
+                    alt={uni.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = `https://images.unsplash.com/photo-1562774053-701939374585?w=600&q=80`;
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                  <div className={`absolute bottom-3 right-3 ${uni.badgeColor} text-white text-xs font-bold px-2 py-1 rounded-lg`}>
+                    {uni.badge}
                   </div>
-                  <h3 className="font-bold text-gray-900 mb-2">{item.title}</h3>
-                  <p className="text-gray-600 text-sm">{item.desc}</p>
                 </div>
-              ))}
-            </div>
+                <div className="p-4">
+                  <h3 className="font-bold text-gray-900 text-base mb-0.5">{uni.nameAr}</h3>
+                  <p className="text-gray-400 text-xs mb-2">{uni.name}</p>
+                  <p className="text-gray-600 text-xs leading-relaxed mb-3">{uni.desc}</p>
+                  <ul className="space-y-1">
+                    {uni.strengths.map((s) => (
+                      <li key={s} className="flex items-center gap-1.5 text-xs text-gray-600">
+                        <CheckCircle size={12} className="text-green-500 flex-shrink-0" />
+                        {s}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <button
+              onClick={() => go("apply", { type: "university" })}
+              className="bg-green-700 hover:bg-green-800 text-white px-10 py-4 rounded-full font-bold text-xl transition-all shadow-xl hover:shadow-2xl flex items-center gap-3 mx-auto group"
+            >
+              <Building2 size={22} />
+              <span>قدّم للجامعة الآن</span>
+              <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
+            </button>
           </div>
         </div>
       </section>
@@ -287,7 +572,8 @@ export default function HomePage() {
             <GraduationCap size={52} className="mx-auto mb-5 text-green-300" />
             <h2 className="text-3xl md:text-4xl font-bold mb-4">هل أنت جاد في الدراسة بماليزيا؟</h2>
             <p className="text-green-100 text-lg mb-8 leading-relaxed">
-              خصصنا هذا النظام للطلاب الجادين فقط. اختر مسارك الآن وسيتواصل معك فريقنا خلال 24 ساعة.
+              اختر مسارك الآن وسيتواصل معك فريقنا خلال 24 ساعة.
+              استشارة مجانية — بدون أي التزام.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
@@ -311,7 +597,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Why Trust Us */}
+      {/* Trust Pillars */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-5xl mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-6 text-center">
@@ -320,7 +606,7 @@ export default function HomePage() {
               { icon: <Star className="text-green-600 mx-auto mb-3" size={32} />, title: "شركاء رسميون", desc: "شراكات مباشرة مع معاهد وجامعات ماليزية معترف بها" },
               { icon: <Shield className="text-green-600 mx-auto mb-3" size={32} />, title: "أسعار شفافة", desc: "لا رسوم مخفية، كل التكاليف واضحة من البداية" },
             ].map((item) => (
-              <div key={item.title} className="p-6">
+              <div key={item.title} className="p-6 bg-white rounded-2xl border border-gray-100">
                 {item.icon}
                 <h3 className="font-bold text-gray-900 mb-2">{item.title}</h3>
                 <p className="text-gray-600 text-sm">{item.desc}</p>
@@ -336,14 +622,12 @@ export default function HomePage() {
           <h2 className="text-2xl font-bold text-gray-900 mb-3">تواصل معنا مباشرة</h2>
           <p className="text-gray-600 mb-6">فريقنا جاهز للإجابة على استفساراتك</p>
           <a
-            href="https://wa.me/601112200603"
+            href={WA_LINK}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-full font-bold text-lg transition-all shadow-lg hover:shadow-xl"
           >
-            <svg viewBox="0 0 24 24" className="w-6 h-6 fill-current">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-            </svg>
+            <div className="w-6 h-6">{WHATSAPP_SVG}</div>
             <span>تواصل عبر واتساب</span>
           </a>
         </div>

@@ -6,8 +6,9 @@ export default function Navbar() {
 
   const links = [
     { label: "الرئيسية", href: "#hero" },
-    { label: "لماذا ماليزيا؟", href: "#why" },
+    { label: "من نحن", href: "#about" },
     { label: "خدماتنا", href: "#services" },
+    { label: "الجامعات", href: "#universities" },
     { label: "المعاهد", href: "#institutes" },
     { label: "تواصل معنا", href: "#contact" },
   ];

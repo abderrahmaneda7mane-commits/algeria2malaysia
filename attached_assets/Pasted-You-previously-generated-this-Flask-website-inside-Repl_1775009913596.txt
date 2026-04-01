@@ -1,0 +1,158 @@
+You previously generated this Flask website inside Replit.
+
+Now I want you to CONTINUE improving and upgrading the SAME existing project.
+
+Do NOT rebuild from scratch.
+Do NOT change the core structure unless necessary.
+Only improve and extend the current project.
+
+This websi
+te is for an agency called "Algeria2Malaysia".
+
+The goal is to make it:
+
+More professional
+More clear
+Better at converting visitors into serious students
+
+This is a SMART FUNNEL, not just a website.
+
+Who We Are (About Us):
+
+Add a clean section explaining:
+
+We help Algerian students study in Malaysia
+We provide FREE consultation
+We guide students step-by-step until arrival
+Our Services:
+
+Display as modern cards:
+
+Free Consultation
+Registration (University & Institutes)
+Full Visa Processing (we handle everything)
+Airport Pickup
+SIM Card Assistance
+Accommodation Support (finding suitable housing)
+How It Works:
+
+Make the process look VERY SIMPLE:
+
+Step 1: Fill the form
+Step 2: We review your profile
+Step 3: We contact you via WhatsApp
+Step 4: We handle everything
+
+Make it visually clean and easy.
+
+Do NOT create new forms.
+
+Use the existing Google Forms links that I will provide.
+
+Add strong CTA buttons:
+
+"Apply Now"
+"Start Your Journey"
+
+Add a new section:
+
+"Partner Universities in Malaysia"
+
+Display universities in a GRID of cards.
+
+Each card MUST include:
+
+Image (IMPORTANT)
+University name
+Short description
+Key strengths (bullet points)
+
+APU (Asia Pacific University)
+
+Strong in IT & Technology
+International environment
+
+Taylor’s University
+
+Top ranked private university
+Strong in business & hospitality
+
+MMU (Multimedia University)
+
+Technology & engineering focus
+
+UniKL
+
+Technical and engineering programs
+
+Lincoln University
+
+Affordable programs
+Wide range of courses
+
+UTP (Universiti Teknologi Petronas) - Cyberjaya
+
+Top engineering university
+
+UPM (Universiti Putra Malaysia)
+
+Strong research university
+
+UM (University of Malaya)
+
+#1 university in Malaysia
+
+UCSI University
+
+Strong in medicine & business
+
+Sunway University
+
+Modern campus
+International partnerships
+
+Add high-quality images for each university.
+
+Rules:
+
+Use real campus images or high-quality stock images
+Same size for all cards
+Optimized for fast loading
+No broken links
+
+Card layout:
+
+Image on top
+Content below
+
+Add:
+
+Hover effect (zoom or shadow)
+Rounded corners
+Modern startup style UI
+Clean spacing
+Professional layout
+Mobile responsive
+Use cards and sections
+Add hover effects
+
+Make user feel:
+"I just need to fill the form and everything will be handled"
+
+Reduce confusion
+Keep it simple
+Add CTA buttons after each section
+Add WhatsApp floating button
+Smooth scrolling
+Optional subtle animations
+Do NOT restart the project
+Do NOT remove existing features
+Only improve and extend
+
+Transform this into a professional agency website that:
+
+Builds trust
+Looks modern
+Converts visitors into serious leads
+also edit the instagram page link
+https://www.instagram.com/algeria2malaysia?igsh=MXE2emw2aTc0eWZnbw%3D%3D&utm_source=qr
