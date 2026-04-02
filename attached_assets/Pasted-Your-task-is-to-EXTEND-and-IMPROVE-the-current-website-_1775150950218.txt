@@ -1,0 +1,95 @@
+Your task is to EXTEND and IMPROVE the current website by adding a university data system.
+
+CRITICAL RULES:
+
+Do NOT delete or overwrite existing files.
+Do NOT break current functionality.
+Only ADD new modules and integrate carefully.
+If needed, create separate files and connect them safely.
+ADD BACKGROUND SCRAPER (NEW MODULE)
+Create a separate Python module (e.g. scraper.py).
+This module will extract university data from an external website (like YourUni).
+Extract:
+University name
+Program name
+Tuition fees (original currency)
+Duration
+Intake dates
+Description
+The scraper must:
+Run in the background (NOT when users visit the site)
+Be modular (one function per university, start with UPM)
+Log errors and progress
+Avoid duplicates
+ADD DATABASE (WITHOUT BREAKING CURRENT SYSTEM)
+Integrate SQLite (or use existing DB if present).
+Add new tables:
+
+Universities:
+
+id
+name
+
+Programs:
+
+id
+university_id
+name
+duration
+intake
+description
+original_fee
+original_currency
+fee_myr
+fee_eur
+last_updated
+Do NOT modify existing tables unless necessary.
+ADD CURRENCY CONVERSION
+Add a new module (currency.py):
+Convert all fees to:
+MYR (Malaysian Ringgit)
+EUR (Euro)
+Use an exchange rate API.
+Cache rates and update once per day.
+BACKEND INTEGRATION
+Extend the existing backend (Flask or current framework).
+Add new routes ONLY:
+/api/universities
+/api/programs
+/api/programs?university=UPM
+These routes must:
+Read from database ONLY
+Be fast
+Not trigger scraping
+FRONTEND INTEGRATION (SAFE)
+Do NOT redesign the whole UI.
+
+Add a NEW section/page:
+
+"Universities" or "Programs"
+
+In this section:
+Display programs
+Show prices in MYR and EUR
+Add filters (price, duration)
+Add search
+Keep design consistent with current website.
+AUTOMATION
+Add a scheduler:
+Run scraper every 24 hours
+Do NOT block the main app while scraping
+SAFETY & BACKUP
+Before making changes:
+Duplicate important files or create backups
+Keep changes isolated in new modules where possible
+FIRST STEP (IMPORTANT)
+Start ONLY with UPM university
+Make sure:
+Data is accurate
+Stored correctly
+Displayed correctly in the website
+
+After that, make it easy to scale to other universities.
+
+FINAL GOAL:
+Enhance the current website by adding a fast and scalable university data system WITHOUT breaking anything.

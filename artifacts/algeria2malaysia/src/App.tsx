@@ -5,6 +5,7 @@ import ApplyPage from "./pages/ApplyPage";
 import ThankYouPage from "./pages/ThankYouPage";
 import UniversitiesPage from "./pages/UniversitiesPage";
 import UniApplyPage from "./pages/UniApplyPage";
+import ProgramsPage from "./pages/ProgramsPage";
 import { getNavState, subscribeNav } from "./hooks/useNavigate";
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
       {showNavbar && <Navbar />}
       {page === "home" && <HomePage />}
       {page === "universities" && <UniversitiesPage />}
+      {page === "programs" && <ProgramsPage />}
       {page === "apply" && <ApplyPage initialType={state.type} />}
       {page === "thank-you" && <ThankYouPage />}
       {page === "uni-apply" && <UniApplyPage />}

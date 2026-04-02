@@ -55,9 +55,22 @@ A smart sales funnel website for the Algeria2Malaysia education agency.
 ### Key Files
 - `artifacts/algeria2malaysia/src/data/institutes.ts` — All institute data, pricing, Google Form links, WhatsApp number
 - `artifacts/algeria2malaysia/src/pages/HomePage.tsx` — Landing page
-- `artifacts/algeria2malaysia/src/pages/ApplyPage.tsx` — Multi-step funnel
+- `artifacts/algeria2malaysia/src/pages/UniversitiesPage.tsx` — 12-university detail page
+- `artifacts/algeria2malaysia/src/pages/ProgramsPage.tsx` — Dynamic programs page (reads from API)
+- `artifacts/algeria2malaysia/src/pages/ApplyPage.tsx` — Multi-step funnel for institutes
+- `artifacts/algeria2malaysia/src/pages/UniApplyPage.tsx` — Offer Letter application form
 - `artifacts/algeria2malaysia/src/pages/ThankYouPage.tsx` — Success page
-- `artifacts/algeria2malaysia/src/hooks/useNavigate.ts` — Simple SPA navigation store
+- `artifacts/algeria2malaysia/src/hooks/useNavigate.ts` — Simple SPA navigation store (pages: home, apply, thank-you, universities, uni-apply, programs)
+
+### University Data System (Added April 2026)
+Dynamic data pipeline for university programs:
+- **Database**: PostgreSQL tables `universities` and `programs` via Drizzle ORM (`lib/db/src/schema/universities.ts`)
+- **Seeder**: `artifacts/api-server/src/seeders/upm.ts` — seeds UPM's 23 programs with accurate 2026 fees
+- **Currency**: `artifacts/api-server/src/lib/currency.ts` — MYR↔EUR conversion, caches exchange rates daily
+- **Scheduler**: `artifacts/api-server/src/lib/scheduler.ts` — reruns seeder every 24h automatically
+- **API Routes**: `GET /api/universities`, `GET /api/programs?university=upm`
+- **Frontend Proxy**: Vite dev server proxies `/api/*` → `http://localhost:8080`
+- To add a new university: copy `upm.ts` seeder pattern, call `startDailyJob()` in `index.ts`
 
 ### To Update Google Form Links
 Edit `GOOGLE_FORM_LINKS` in `src/data/institutes.ts`:
