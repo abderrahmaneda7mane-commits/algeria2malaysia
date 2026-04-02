@@ -750,7 +750,7 @@ export default function HomePage() {
 
           <div className="text-green-400 text-xs mb-1">تابعنا على وسائل التواصل: @algeria2malaysia</div>
           <div className="border-t border-green-700 pt-4 text-green-500 text-xs">
-            © 2025 Algeria2Malaysia. جميع الحقوق محفوظة.
+            © 2026 Algeria2Malaysia. جميع الحقوق محفوظة.
           </div>
         </div>
       </footer>
