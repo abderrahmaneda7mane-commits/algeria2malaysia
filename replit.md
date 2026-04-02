@@ -65,7 +65,7 @@ A smart sales funnel website for the Algeria2Malaysia education agency.
 ### University Data System (Added April 2026)
 Dynamic data pipeline for university programs:
 - **Database**: PostgreSQL tables `universities` and `programs` via Drizzle ORM (`lib/db/src/schema/universities.ts`)
-- **Seeder**: `artifacts/api-server/src/seeders/upm.ts` — seeds UPM's 23 programs with accurate 2026 fees
+- **Seeder**: `artifacts/api-server/src/seeders/upm.ts` — seeds UPM's 746 programs parsed from official database (69 Bachelor, 394 Master, 282 PhD, 1 Foundation)
 - **Currency**: `artifacts/api-server/src/lib/currency.ts` — MYR↔EUR conversion, caches exchange rates daily
 - **Scheduler**: `artifacts/api-server/src/lib/scheduler.ts` — reruns seeder every 24h automatically
 - **API Routes**: `GET /api/universities`, `GET /api/programs?university=upm`

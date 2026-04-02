@@ -23,9 +23,10 @@ const LEVEL_COLORS: Record<string, string> = {
   "البكالوريوس": "bg-blue-100 text-blue-700",
   "الماستر": "bg-purple-100 text-purple-700",
   "الدكتوراه": "bg-rose-100 text-rose-700",
+  "التأهيلي": "bg-amber-100 text-amber-700",
 };
 
-const LEVELS = ["الكل", "البكالوريوس", "الماستر", "الدكتوراه"];
+const LEVELS = ["الكل", "البكالوريوس", "الماستر", "الدكتوراه", "التأهيلي"];
 
 export default function ProgramsPage() {
   const { go } = useNavigate();
@@ -194,14 +195,23 @@ export default function ProgramsPage() {
 
                     {/* Fees */}
                     <div className="flex gap-3 flex-shrink-0">
-                      <div className="text-center">
-                        <p className="text-xs text-gray-400">سنوياً (RM)</p>
-                        <p className="font-bold text-green-700 text-sm">{p.feeMyr.toLocaleString()}</p>
-                      </div>
-                      <div className="text-center">
-                        <p className="text-xs text-gray-400">سنوياً (€)</p>
-                        <p className="font-bold text-blue-600 text-sm">€{p.feeEur.toLocaleString()}</p>
-                      </div>
+                      {p.feeMyr === 0 ? (
+                        <div className="text-center">
+                          <p className="text-xs text-gray-400">الرسوم</p>
+                          <p className="font-bold text-amber-600 text-xs bg-amber-50 px-2 py-1 rounded-lg">تواصل للاستفسار</p>
+                        </div>
+                      ) : (
+                        <>
+                          <div className="text-center">
+                            <p className="text-xs text-gray-400">سنوياً (RM)</p>
+                            <p className="font-bold text-green-700 text-sm">{p.feeMyr.toLocaleString()}</p>
+                          </div>
+                          <div className="text-center">
+                            <p className="text-xs text-gray-400">سنوياً (€)</p>
+                            <p className="font-bold text-blue-600 text-sm">€{p.feeEur.toLocaleString()}</p>
+                          </div>
+                        </>
+                      )}
                     </div>
 
                     <ChevronDown
@@ -229,6 +239,11 @@ export default function ProgramsPage() {
                       </div>
                       {p.description && (
                         <p className="text-gray-600 text-sm leading-relaxed mb-4">{p.description}</p>
+                      )}
+                      {p.feeMyr === 0 && (
+                        <p className="text-amber-700 text-sm bg-amber-50 rounded-xl px-4 py-2 mb-3 border border-amber-100">
+                          💡 هذا البرنامج بحثي — الرسوم تُحدَّد حسب الجامعة وقد تختلف بحسب الجنسية والمنحة. تواصل معنا للاستفسار.
+                        </p>
                       )}
                       <button
                         onClick={() => go("uni-apply", { university: "UPM — Universiti Putra Malaysia" })}
