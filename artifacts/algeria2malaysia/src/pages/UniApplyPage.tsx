@@ -16,6 +16,7 @@ const UNIVERSITIES = [
   "UTeM — Universiti Teknikal Malaysia Melaka",
   "UCSI University",
   "Sunway University",
+  "City University Malaysia",
   "Not decided yet",
 ];
 
@@ -31,6 +32,7 @@ const UNI_NAME_MAP: Record<string, string> = {
   "UTeM": "UTeM — Universiti Teknikal Malaysia Melaka",
   "UCSI University": "UCSI University",
   "Sunway University": "Sunway University",
+  "City University": "City University Malaysia",
 };
 
 const HOW_OPTIONS = [

@@ -273,6 +273,35 @@ const UNIVERSITIES = [
     ],
     accentColor: "indigo",
   },
+  {
+    id: "cityu",
+    name: "City University",
+    nameAr: "جامعة سيتي ماليزيا",
+    nameFull: "City University Malaysia",
+    location: "بيتالينغ جايا — سيلانغور",
+    established: "1984",
+    badge: "Engineering & Law",
+    badgeColor: "bg-red-600",
+    desc: "جامعة خاصة ماليزية معتمدة تأسست عام 1984، تقع في بيتالينغ جايا بولاية سيلانغور. تتميز بتنوع برامجها بين الهندسة والقانون والأعمال وتكنولوجيا المعلومات، وتستقطب طلاباً من مختلف أنحاء العالم في بيئة أكاديمية متعددة الثقافات.",
+    logoImg: "/logos/cityu.png",
+    strengths: [
+      "معتمدة من MQA — هيئة الاعتماد الأكاديمي الماليزية",
+      "تخصصات قانونية وهندسية وتقنية متكاملة",
+      "رسوم تنافسية مناسبة للطلاب الجزائريين",
+      "بيئة دولية متعددة الثقافات وقريبة من كوالالمبور",
+    ],
+    programs: [
+      { level: "Foundation", duration: "1 سنة", specialties: ["العلوم الطبيعية", "الأعمال والإدارة", "تكنولوجيا المعلومات"] },
+      { level: "البكالوريوس", duration: "3-4 سنوات", specialties: ["الهندسة المدنية", "الهندسة الكهربائية", "القانون", "إدارة الأعمال", "علوم الحاسوب", "العمارة"] },
+      { level: "الماستر", duration: "1-2 سنة", specialties: ["هندسة البناء", "إدارة الأعمال MBA", "القانون التجاري", "تكنولوجيا المعلومات"] },
+    ],
+    pricing: [
+      { label: "Foundation", rm: "8,000 – 12,000", eur: `${fmtEur(8000)} – ${fmtEur(12000)}`, note: "السنة الأولى" },
+      { label: "البكالوريوس", rm: "12,000 – 20,000", eur: `${fmtEur(12000)} – ${fmtEur(20000)}`, note: "سنوياً" },
+      { label: "الماستر", rm: "15,000 – 26,000", eur: `${fmtEur(15000)} – ${fmtEur(26000)}`, note: "المجموع" },
+    ],
+    accentColor: "crimson",
+  },
 ];
 
 const accentMap: Record<string, { border: string; badge: string; text: string; bg: string }> = {
@@ -287,6 +316,7 @@ const accentMap: Record<string, { border: string; badge: string; text: string; b
   indigo:  { border: "border-indigo-400",  badge: "bg-indigo-600",  text: "text-indigo-700",  bg: "bg-indigo-50" },
   sky:     { border: "border-sky-400",     badge: "bg-sky-600",     text: "text-sky-700",     bg: "bg-sky-50" },
   rose:    { border: "border-rose-400",    badge: "bg-rose-600",    text: "text-rose-700",    bg: "bg-rose-50" },
+  crimson: { border: "border-red-400",     badge: "bg-red-600",     text: "text-red-700",     bg: "bg-red-50" },
 };
 
 export default function UniversitiesPage() {
@@ -316,7 +346,7 @@ export default function UniversitiesPage() {
         <div className="inline-block bg-white/20 backdrop-blur-sm border border-white/30 rounded-full px-4 py-1 text-sm font-medium mb-4">
           🎓 جامعاتنا الشريكة
         </div>
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">11 جامعة ماليزية معتمدة</h1>
+        <h1 className="text-4xl md:text-5xl font-bold mb-4">12 جامعة ماليزية معتمدة</h1>
         <p className="text-green-100 text-lg max-w-2xl mx-auto">
           نساعدك على الالتحاق بأفضل الجامعات الماليزية المعترف بها دولياً — استشارة مجانية، نتولى كل الإجراءات
         </p>

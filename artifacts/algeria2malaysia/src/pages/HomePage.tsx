@@ -121,6 +121,16 @@ const UNIVERSITIES = [
     badge: "Modern Campus",
     badgeColor: "bg-indigo-600",
   },
+  {
+    uniId: "cityu",
+    name: "City University",
+    nameAr: "جامعة سيتي ماليزيا",
+    desc: "جامعة معتمدة من 1984 في الهندسة والقانون والأعمال وتكنولوجيا المعلومات",
+    strengths: ["هندسة وقانون وأعمال", "معتمدة MQA", "رسوم تنافسية"],
+    img: "/logos/cityu.png",
+    badge: "Engineering & Law",
+    badgeColor: "bg-red-600",
+  },
 ];
 
 export default function HomePage() {
@@ -201,7 +211,7 @@ export default function HomePage() {
 
           <div className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-xl mx-auto">
             {[
-              { num: "11+", label: "جامعة شريكة" },
+              { num: "12+", label: "جامعة شريكة" },
               { num: "3+", label: "معاهد معتمدة" },
               { num: "100%", label: "شفافية بالأسعار" },
               { num: "24h", label: "رد سريع" },
@@ -553,7 +563,7 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-14">
             <div className="inline-block bg-green-100 text-green-700 rounded-full px-4 py-1 text-sm font-semibold mb-4">جامعاتنا الشريكة</div>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">11 جامعة ماليزية معتمدة</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">12 جامعة ماليزية معتمدة</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">نساعدك على الالتحاق بأفضل الجامعات الماليزية المعترف بها دولياً</p>
           </div>
 
