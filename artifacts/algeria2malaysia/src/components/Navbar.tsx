@@ -9,7 +9,7 @@ function scrollToSection(sectionId: string) {
   }
 }
 
-function handleNavLink(sectionId: string | null, page: "universities" | "programs" | null, closeMobile?: () => void) {
+function handleNavLink(sectionId: string | null, page: "universities" | null, closeMobile?: () => void) {
   if (closeMobile) closeMobile();
   if (page) {
     navigate(page);
@@ -27,12 +27,11 @@ function handleNavLink(sectionId: string | null, page: "universities" | "program
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
-  const links: { label: string; sectionId: string | null; page: "universities" | "programs" | null }[] = [
+  const links: { label: string; sectionId: string | null; page: "universities" | null }[] = [
     { label: "الرئيسية",   sectionId: "hero",        page: null },
     { label: "من نحن",     sectionId: "about",       page: null },
     { label: "خدماتنا",    sectionId: "services",    page: null },
     { label: "الجامعات",   sectionId: null,          page: "universities" },
-    { label: "البرامج",    sectionId: null,          page: "programs" },
     { label: "المعاهد",    sectionId: "institutes",  page: null },
     { label: "تواصل معنا", sectionId: "contact",     page: null },
   ];

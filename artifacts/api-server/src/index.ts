@@ -1,7 +1,5 @@
-import app from "./app.js";
-import { logger } from "./lib/logger.js";
-import { seedUPM } from "./seeders/upm.js";
-import { startDailyJob } from "./lib/scheduler.js";
+import app from "./app";
+import { logger } from "./lib/logger";
 
 const rawPort = process.env["PORT"];
 
@@ -24,6 +22,4 @@ app.listen(port, (err) => {
   }
 
   logger.info({ port }, "Server listening");
-
-  startDailyJob("seed-upm", seedUPM);
 });
