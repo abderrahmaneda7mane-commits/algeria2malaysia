@@ -379,8 +379,10 @@ export default function ApplyPage({ initialType }: { initialType?: "institute" |
   }
 
   if (step === "intake") {
-    const selectedInst = INSTITUTES.find((i) => i.id === form.selectedInstitute);
-    const intakes = selectedInst?.intakes || [];
+    const intakes = [
+      "يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو",
+      "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر",
+    ];
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center py-20 px-4" dir="rtl">
         <div className="w-full max-w-lg bg-white rounded-3xl shadow-xl p-8">
