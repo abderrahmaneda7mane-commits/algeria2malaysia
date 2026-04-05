@@ -6,6 +6,7 @@ import ThankYouPage from "./pages/ThankYouPage";
 import UniversitiesPage from "./pages/UniversitiesPage";
 import UniApplyPage from "./pages/UniApplyPage";
 import UPMCoursesPage from "./pages/UPMCoursesPage";
+import APUCoursesPage from "./pages/APUCoursesPage";
 import { getNavState, subscribeNav } from "./hooks/useNavigate";
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
 
   const { page, state } = nav;
 
-  const showNavbar = page === "home" || page === "universities" || page === "upm";
+  const showNavbar = page === "home" || page === "universities" || page === "upm" || page === "apu";
 
   return (
     <div className="min-h-screen bg-white" dir="rtl">
@@ -28,6 +29,7 @@ function App() {
       {page === "thank-you" && <ThankYouPage />}
       {page === "uni-apply" && <UniApplyPage />}
       {page === "upm" && <UPMCoursesPage />}
+      {page === "apu" && <APUCoursesPage />}
     </div>
   );
 }
