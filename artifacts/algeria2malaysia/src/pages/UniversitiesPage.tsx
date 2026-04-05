@@ -473,7 +473,17 @@ export default function UniversitiesPage() {
                   </div>
 
                   {/* CTA */}
-                  <div className="mt-6 pt-6 border-t border-gray-100 flex flex-col sm:flex-row gap-3">
+                  <div className="mt-6 pt-6 border-t border-gray-100 flex flex-col sm:flex-row gap-3 flex-wrap">
+                    {uni.id === "upm" && (
+                      <button
+                        onClick={() => go("upm")}
+                        className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-full font-bold text-sm transition-all shadow-md flex items-center justify-center gap-2 group"
+                      >
+                        <BookOpen size={16} />
+                        <span>استعرض تخصصات UPM</span>
+                        <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
+                      </button>
+                    )}
                     <button
                       onClick={() => go("apply", { type: "university" })}
                       className={`flex-1 ${accent.badge} hover:opacity-90 text-white px-6 py-3 rounded-full font-bold text-sm transition-all shadow-md flex items-center justify-center gap-2 group`}
