@@ -1,4 +1,4 @@
-export type Page = "home" | "apply" | "thank-you" | "universities" | "uni-apply" | "upm" | "apu" | "taylors";
+export type Page = "home" | "apply" | "thank-you" | "universities" | "uni-apply" | "upm" | "apu" | "taylors" | "mmu";
 export interface PageState {
   type?: "institute" | "university";
   scrollTo?: string;

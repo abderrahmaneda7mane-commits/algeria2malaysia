@@ -8,6 +8,7 @@ import UniApplyPage from "./pages/UniApplyPage";
 import UPMCoursesPage from "./pages/UPMCoursesPage";
 import APUCoursesPage from "./pages/APUCoursesPage";
 import TaylorsCoursesPage from "./pages/TaylorsCoursesPage";
+import MMUCoursesPage from "./pages/MMUCoursesPage";
 import { getNavState, subscribeNav } from "./hooks/useNavigate";
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
 
   const { page, state } = nav;
 
-  const showNavbar = page === "home" || page === "universities" || page === "upm" || page === "apu" || page === "taylors";
+  const showNavbar = page === "home" || page === "universities" || page === "upm" || page === "apu" || page === "taylors" || page === "mmu";
 
   return (
     <div className="min-h-screen bg-white" dir="rtl">
@@ -32,6 +33,7 @@ function App() {
       {page === "upm" && <UPMCoursesPage />}
       {page === "apu" && <APUCoursesPage />}
       {page === "taylors" && <TaylorsCoursesPage />}
+      {page === "mmu" && <MMUCoursesPage />}
     </div>
   );
 }
