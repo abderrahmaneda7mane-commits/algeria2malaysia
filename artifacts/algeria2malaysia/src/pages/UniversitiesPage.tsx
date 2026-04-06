@@ -494,6 +494,16 @@ export default function UniversitiesPage() {
                         <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
                       </button>
                     )}
+                    {uni.id === "taylors" && (
+                      <button
+                        onClick={() => go("taylors")}
+                        className="flex-1 bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-full font-bold text-sm transition-all shadow-md flex items-center justify-center gap-2 group"
+                      >
+                        <BookOpen size={16} />
+                        <span>استعرض تخصصات Taylor's</span>
+                        <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
+                      </button>
+                    )}
                     <button
                       onClick={() => go("apply", { type: "university" })}
                       className={`flex-1 ${accent.badge} hover:opacity-90 text-white px-6 py-3 rounded-full font-bold text-sm transition-all shadow-md flex items-center justify-center gap-2 group`}
