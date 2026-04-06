@@ -272,6 +272,7 @@ export default function TaylorsCoursesPage() {
                         <>
                           <span className="font-semibold text-green-700">{course.price.toLocaleString()} RM</span>
                           <span className="text-gray-400 text-xs">/ € {toEur(course.price)}</span>
+                          <span className="text-gray-400 text-xs">· / year</span>
                         </>
                       )}
                     </span>
