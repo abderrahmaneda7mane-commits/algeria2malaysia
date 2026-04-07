@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import {
   Search, X, ArrowLeft, Clock, Calendar, DollarSign,
-  MapPin, GraduationCap, BookOpen, FileText, ChevronLeft
+  MapPin, GraduationCap, BookOpen, FileText, ChevronLeft,
+  BarChart2, ArrowUpDown, TrendingDown
 } from "lucide-react";
 import { useNavigate } from "../hooks/useNavigate";
 import { supabase } from "../lib/supabase";
@@ -48,6 +49,16 @@ function useDebounce(value: string, delay: number) {
   return debounced;
 }
 
+/* Extract core keyword from full course name for comparison search */
+function extractKeyword(name: string): string {
+  const cleaned = name
+    .replace(/^(bachelor of science in|bachelor of arts in|bachelor of|bsc \(hons\) in|bsc in|b\.sc in|master of science in|master of arts in|master of|msc in|diploma in|advanced diploma in|doctor of|phd in|foundation in|certificate in|programme in|programme of)/i, "")
+    .trim();
+  // Take first 2–3 significant words
+  const words = cleaned.split(/\s+/).filter(w => w.length > 2);
+  return words.slice(0, 3).join(" ");
+}
+
 export default function GlobalSearchPage() {
   const { go } = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
@@ -58,6 +69,12 @@ export default function GlobalSearchPage() {
   const [loading, setLoading] = useState(false);
   const [searched, setSearched] = useState(false);
   const [modal, setModal] = useState<ModalCourse | null>(null);
+
+  /* ── Price Compare state ── */
+  const [compareLabel, setCompareLabel] = useState<string>("");
+  const [compareResults, setCompareResults] = useState<Course[]>([]);
+  const [compareLoading, setCompareLoading] = useState(false);
+  const [showCompare, setShowCompare] = useState(false);
 
   useEffect(() => { inputRef.current?.focus(); }, []);
 
@@ -78,10 +95,34 @@ export default function GlobalSearchPage() {
 
   useEffect(() => { doSearch(debouncedQuery); }, [debouncedQuery, doSearch]);
 
+  /* ── Open specialty price comparison ── */
+  async function openPriceCompare(courseName: string) {
+    const keyword = extractKeyword(courseName);
+    setCompareLabel(keyword || courseName);
+    setShowCompare(true);
+    setModal(null);
+    setCompareLoading(true);
+    setCompareResults([]);
+    try {
+      const { data } = await supabase
+        .from("courses")
+        .select("id, name, duration, intake, price, university_id")
+        .ilike("name", `%${keyword}%`)
+        .not("price", "is", null)
+        .gt("price", 0)
+        .order("price", { ascending: true })
+        .limit(40);
+      setCompareResults(data ?? []);
+    } catch { setCompareResults([]); }
+    finally { setCompareLoading(false); }
+  }
+
   const grouped = results.reduce<Record<number, Course[]>>((acc, c) => {
     (acc[c.university_id] ??= []).push(c);
     return acc;
   }, {});
+
+  const minPrice = compareResults.length ? compareResults[0].price ?? 0 : 0;
 
   return (
     <div className="min-h-screen bg-gray-50" dir="rtl">
@@ -131,7 +172,6 @@ export default function GlobalSearchPage() {
       {/* Results */}
       <div className="max-w-3xl mx-auto px-4 -mt-6 pb-16">
 
-        {/* Loading */}
         {loading && (
           <div className="bg-white rounded-2xl shadow-lg p-8 text-center border border-gray-100">
             <div className="w-8 h-8 border-3 border-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-3" style={{ borderWidth: 3 }}></div>
@@ -139,7 +179,6 @@ export default function GlobalSearchPage() {
           </div>
         )}
 
-        {/* Empty state (before search) */}
         {!loading && !searched && (
           <div className="bg-white rounded-2xl shadow-lg p-10 text-center border border-gray-100">
             <GraduationCap size={52} className="mx-auto text-green-200 mb-4" />
@@ -161,7 +200,6 @@ export default function GlobalSearchPage() {
           </div>
         )}
 
-        {/* No results */}
         {!loading && searched && results.length === 0 && (
           <div className="bg-white rounded-2xl shadow-lg p-10 text-center border border-gray-100">
             <BookOpen size={48} className="mx-auto text-gray-200 mb-3" />
@@ -170,7 +208,6 @@ export default function GlobalSearchPage() {
           </div>
         )}
 
-        {/* Results grouped by university */}
         {!loading && results.length > 0 && (
           <div className="space-y-4">
             <p className="text-xs text-gray-400 pt-2 pb-1 pr-1">
@@ -182,7 +219,6 @@ export default function GlobalSearchPage() {
               if (!meta) return null;
               return (
                 <div key={uniId} className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-                  {/* University header */}
                   <div className={`flex items-center gap-3 px-5 py-3 ${meta.bg} border-b ${meta.border}`}>
                     <div className="w-9 h-9 bg-white rounded-xl flex items-center justify-center flex-shrink-0 shadow-sm p-1">
                       <img src={meta.logo} alt={meta.nameEn} className="max-w-full max-h-full object-contain" />
@@ -197,17 +233,16 @@ export default function GlobalSearchPage() {
                       {courses.length} تخصص
                     </span>
                   </div>
-                  {/* Course list */}
                   <div className="divide-y divide-gray-50">
                     {courses.map(course => (
-                      <button
-                        key={course.id}
-                        onClick={() => setModal({ ...course, uniId })}
-                        className="w-full text-right px-5 py-3.5 hover:bg-gray-50 transition-colors flex items-center justify-between gap-3 group"
-                      >
-                        <div className="flex-1 min-w-0">
+                      <div key={course.id} className="flex items-center gap-2 px-4 py-3 hover:bg-gray-50/60 transition-colors">
+                        {/* Course info */}
+                        <button
+                          onClick={() => setModal({ ...course, uniId })}
+                          className="flex-1 min-w-0 text-right"
+                        >
                           <p className="font-semibold text-gray-900 text-sm leading-snug truncate">{course.name}</p>
-                          <div className="flex flex-wrap gap-x-4 gap-y-1 mt-1">
+                          <div className="flex flex-wrap gap-x-3 gap-y-1 mt-1">
                             {course.duration != null && (
                               <span className="flex items-center gap-1 text-xs text-gray-500">
                                 <Clock size={11} />{course.duration} {Number(course.duration) === 1 ? "سنة" : "سنوات"}
@@ -215,13 +250,27 @@ export default function GlobalSearchPage() {
                             )}
                             {course.price != null && course.price > 0 && (
                               <span className="flex items-center gap-1 text-xs text-green-700 font-medium">
-                                <DollarSign size={11} />{course.price.toLocaleString()} RM / € {toEur(course.price)}
+                                <DollarSign size={11} />{course.price.toLocaleString()} RM
                               </span>
                             )}
                           </div>
-                        </div>
-                        <ChevronLeft size={16} className="text-gray-300 group-hover:text-green-500 transition-colors flex-shrink-0" />
-                      </button>
+                        </button>
+                        {/* Compare price button */}
+                        <button
+                          onClick={() => openPriceCompare(course.name)}
+                          title="قارن سعر هذا التخصص عبر الجامعات"
+                          className="flex-shrink-0 flex items-center gap-1 bg-blue-50 hover:bg-blue-100 text-blue-600 border border-blue-200 rounded-xl px-2.5 py-1.5 text-[11px] font-bold transition-colors"
+                        >
+                          <BarChart2 size={13} />
+                          <span className="hidden sm:inline">قارن السعر</span>
+                        </button>
+                        <button
+                          onClick={() => setModal({ ...course, uniId })}
+                          className="flex-shrink-0 text-gray-300 hover:text-green-500 transition-colors"
+                        >
+                          <ChevronLeft size={16} />
+                        </button>
+                      </div>
                     ))}
                   </div>
                 </div>
@@ -231,7 +280,7 @@ export default function GlobalSearchPage() {
         )}
       </div>
 
-      {/* Detail Modal */}
+      {/* ════ Detail Modal ════ */}
       {modal && (() => {
         const meta = UNI_META[modal.uniId];
         if (!meta) return null;
@@ -242,7 +291,6 @@ export default function GlobalSearchPage() {
           >
             <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setModal(null)} />
             <div className="relative bg-white w-full sm:max-w-lg rounded-t-3xl sm:rounded-3xl shadow-2xl z-10 overflow-hidden max-h-[92vh] flex flex-col">
-              {/* Modal header */}
               <div className={`${meta.bg} px-6 py-5 border-b ${meta.border}`}>
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex items-center gap-3">
@@ -254,24 +302,18 @@ export default function GlobalSearchPage() {
                       <p className="text-gray-500 text-xs">{meta.nameEn}</p>
                     </div>
                   </div>
-                  <button
-                    onClick={() => setModal(null)}
-                    className="text-gray-400 hover:text-gray-700 transition-colors mt-0.5 flex-shrink-0"
-                  >
+                  <button onClick={() => setModal(null)} className="text-gray-400 hover:text-gray-700 transition-colors mt-0.5 flex-shrink-0">
                     <X size={20} />
                   </button>
                 </div>
               </div>
 
-              {/* Modal body */}
               <div className="flex-1 overflow-y-auto px-6 py-5 space-y-5">
-                {/* Course name */}
                 <div>
                   <p className="text-xs text-gray-400 font-medium mb-1">التخصص</p>
                   <h2 className="text-xl font-bold text-gray-900 leading-snug">{modal.name}</h2>
                 </div>
 
-                {/* Details grid */}
                 <div className={`grid grid-cols-2 gap-3`}>
                   <div className={`rounded-2xl p-4 ${meta.bg} border ${meta.border}`}>
                     <div className={`flex items-center gap-2 mb-1 ${meta.color}`}>
@@ -313,27 +355,169 @@ export default function GlobalSearchPage() {
                 </div>
               </div>
 
-              {/* Modal footer — CTA buttons */}
               <div className="px-6 py-5 border-t border-gray-100 space-y-3">
+                {/* Compare price button */}
+                <button
+                  onClick={() => openPriceCompare(modal.name)}
+                  className="w-full bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 py-3 rounded-2xl font-bold text-sm transition-all flex items-center justify-center gap-2"
+                >
+                  <BarChart2 size={16} />
+                  قارن سعر هذا التخصص عبر الجامعات
+                </button>
                 <button
                   onClick={() => { setModal(null); go("uni-apply", { university: meta.uniApplyKey }); }}
-                  className="w-full bg-green-600 hover:bg-green-700 text-white py-4 rounded-2xl font-bold text-base transition-all shadow-md flex items-center justify-center gap-2 group"
+                  className="w-full bg-green-600 hover:bg-green-700 text-white py-4 rounded-2xl font-bold text-base transition-all shadow-md flex items-center justify-center gap-2"
                 >
                   <FileText size={18} />
-                  <span>طلب خطاب القبول من {meta.nameAr.split(" ")[0] === "جامعة" ? meta.nameAr : "الجامعة"}</span>
+                  طلب خطاب القبول
                 </button>
                 <button
                   onClick={() => { setModal(null); go(meta.page as any); }}
                   className={`w-full bg-white border-2 ${meta.border} ${meta.color} py-3 rounded-2xl font-semibold text-sm transition-all flex items-center justify-center gap-2 hover:opacity-80`}
                 >
                   <BookOpen size={16} />
-                  <span>استعرض جميع تخصصات الجامعة</span>
+                  استعرض جميع تخصصات الجامعة
                 </button>
               </div>
             </div>
           </div>
         );
       })()}
+
+      {/* ════ Price Comparison Modal ════ */}
+      {showCompare && (
+        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
+          <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setShowCompare(false)} />
+          <div className="relative bg-white w-full sm:max-w-xl rounded-t-3xl sm:rounded-3xl shadow-2xl z-10 overflow-hidden max-h-[92vh] flex flex-col">
+            {/* Header */}
+            <div className="bg-gradient-to-r from-blue-700 to-blue-600 px-5 py-4">
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 bg-white/20 rounded-xl flex items-center justify-center border border-white/30">
+                    <ArrowUpDown size={17} className="text-white" />
+                  </div>
+                  <div>
+                    <p className="text-white font-extrabold text-sm leading-tight">مقارنة الأسعار</p>
+                    <p className="text-blue-200 text-xs mt-0.5 font-medium truncate max-w-48">"{compareLabel}"</p>
+                  </div>
+                </div>
+                <button onClick={() => setShowCompare(false)} className="text-white/70 hover:text-white transition-colors">
+                  <X size={20} />
+                </button>
+              </div>
+            </div>
+
+            {/* Subheader */}
+            <div className="bg-blue-50 border-b border-blue-100 px-5 py-2.5 flex items-center gap-2">
+              <TrendingDown size={14} className="text-blue-600" />
+              <p className="text-blue-700 text-xs font-semibold">مرتّبة من الأرخص إلى الأغلى</p>
+              {!compareLoading && compareResults.length > 0 && (
+                <span className="mr-auto text-xs text-blue-500 font-medium">{compareResults.length} نتيجة</span>
+              )}
+            </div>
+
+            {/* Body */}
+            <div className="flex-1 overflow-y-auto">
+              {compareLoading && (
+                <div className="flex flex-col items-center justify-center py-16 gap-3">
+                  <div className="w-8 h-8 border-3 border-blue-500 border-t-transparent rounded-full animate-spin" style={{ borderWidth: 3 }}></div>
+                  <p className="text-gray-500 text-sm">جارٍ البحث عن الأسعار...</p>
+                </div>
+              )}
+
+              {!compareLoading && compareResults.length === 0 && (
+                <div className="flex flex-col items-center justify-center py-16 gap-3 text-center px-6">
+                  <BarChart2 size={40} className="text-gray-200" />
+                  <p className="text-gray-600 font-semibold">لم يتم العثور على نتائج مشابهة</p>
+                  <p className="text-gray-400 text-xs">جرّب البحث بكلمة أقصر أو أكثر عمومية</p>
+                </div>
+              )}
+
+              {!compareLoading && compareResults.length > 0 && (
+                <div className="divide-y divide-gray-100">
+                  {compareResults.map((course, idx) => {
+                    const meta = UNI_META[course.university_id];
+                    if (!meta) return null;
+                    const isCheapest = idx === 0;
+                    const price = course.price ?? 0;
+                    const diffPct = minPrice > 0 ? Math.round(((price - minPrice) / minPrice) * 100) : 0;
+
+                    return (
+                      <div
+                        key={course.id}
+                        className={`flex items-start gap-3 px-5 py-4 transition-colors ${isCheapest ? "bg-green-50" : "hover:bg-gray-50"}`}
+                      >
+                        {/* Rank */}
+                        <div className={`flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-xs font-extrabold mt-0.5 ${
+                          isCheapest ? "bg-green-500 text-white shadow-sm" : "bg-gray-100 text-gray-500"
+                        }`}>
+                          {idx + 1}
+                        </div>
+
+                        {/* University logo */}
+                        <div className={`flex-shrink-0 w-10 h-10 ${meta.bg} rounded-xl flex items-center justify-center border ${meta.border} p-1.5`}>
+                          <img src={meta.logo} alt={meta.nameEn} className="max-w-full max-h-full object-contain" />
+                        </div>
+
+                        {/* Info */}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-start justify-between gap-2">
+                            <div className="min-w-0">
+                              <p className={`text-xs font-bold truncate ${meta.color}`}>{meta.nameAr}</p>
+                              <p className="text-gray-800 text-sm font-semibold leading-snug mt-0.5 line-clamp-2">{course.name}</p>
+                              {course.duration != null && (
+                                <p className="text-gray-400 text-xs mt-1 flex items-center gap-1">
+                                  <Clock size={10} /> {course.duration} {Number(course.duration) === 1 ? "سنة" : "سنوات"}
+                                </p>
+                              )}
+                            </div>
+                            {/* Price */}
+                            <div className="flex-shrink-0 text-left">
+                              <p className={`text-sm font-extrabold ${isCheapest ? "text-green-600" : "text-gray-900"}`}>
+                                {price.toLocaleString()} RM
+                              </p>
+                              <p className="text-xs text-gray-400">≈ €{toEur(price)}</p>
+                              {diffPct > 0 && (
+                                <span className="text-[10px] text-orange-500 font-semibold">+{diffPct}%</span>
+                              )}
+                              {isCheapest && (
+                                <span className="block text-[10px] text-green-600 font-bold">الأرخص ✓</span>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+
+            {/* Footer */}
+            <div className="px-5 py-4 border-t border-gray-100 bg-gray-50">
+              <p className="text-xs text-gray-500 text-center mb-3">اختر الجامعة المناسبة واطلب خطاب القبول مباشرة</p>
+              <div className="flex gap-2 overflow-x-auto pb-1">
+                {[...new Set(compareResults.map(c => c.university_id))]
+                  .filter(id => UNI_META[id])
+                  .slice(0, 5)
+                  .map(uid => {
+                    const m = UNI_META[uid];
+                    return (
+                      <button
+                        key={uid}
+                        onClick={() => { setShowCompare(false); go("uni-apply", { university: m.uniApplyKey }); }}
+                        className={`flex-shrink-0 flex items-center gap-1.5 ${m.bg} border ${m.border} ${m.color} px-3 py-2 rounded-xl text-xs font-bold transition-all hover:opacity-80`}
+                      >
+                        <img src={m.logo} alt="" className="w-4 h-4 object-contain" />
+                        خطاب القبول — {m.nameEn.split(" ")[0]}
+                      </button>
+                    );
+                  })}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
