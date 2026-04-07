@@ -53,7 +53,7 @@ export default function ThankYouPage() {
         </div>
 
         <div className="mt-6 flex justify-center">
-          <img src="/logo.jpeg" alt="Algeria2Malaysia" className="w-12 h-12 rounded-full opacity-60 object-cover" />
+          <img src="/logo-hq.jpg" alt="Algeria2Malaysia" className="w-12 h-12 rounded-full opacity-70 object-cover ring-2 ring-green-300/50" />
         </div>
       </div>
     </div>

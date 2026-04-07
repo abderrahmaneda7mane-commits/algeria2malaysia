@@ -171,12 +171,21 @@ export default function HomePage() {
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 text-center text-white py-20">
-          <div className="flex justify-center mb-6">
-            <img
-              src="/logo.jpeg"
-              alt="Algeria2Malaysia"
-              className="w-28 h-28 rounded-full border-4 border-white/30 shadow-2xl object-cover"
-            />
+          <div className="flex justify-center mb-8">
+            <div className="relative">
+              {/* Outer pulse ring */}
+              <div className="absolute inset-0 rounded-full bg-white/10 scale-125 animate-ping" style={{ animationDuration: "3s" }} />
+              {/* Mid glow ring */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-green-400/30 to-green-300/10 scale-115 blur-sm" style={{ transform: "scale(1.15)" }} />
+              {/* Logo container */}
+              <div className="relative w-32 h-32 rounded-full overflow-hidden border-[3px] border-white/50 shadow-2xl ring-4 ring-green-400/30 ring-offset-4 ring-offset-green-800/30">
+                <img
+                  src="/logo-hq.jpg"
+                  alt="Algeria2Malaysia"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
           </div>
 
           <div className="inline-block bg-white/20 backdrop-blur-sm border border-white/30 rounded-full px-5 py-2 text-sm font-medium mb-6">
@@ -695,7 +704,10 @@ export default function HomePage() {
       <footer className="bg-green-900 text-white py-12">
         <div className="max-w-5xl mx-auto px-4 text-center">
           <div className="flex justify-center mb-4">
-            <img src="/logo.jpeg" alt="Algeria2Malaysia" className="w-16 h-16 rounded-full border-2 border-white/30 object-cover shadow-lg" />
+            <div className="relative">
+              <div className="absolute inset-0 rounded-full bg-green-400/20 blur-md scale-125" />
+              <img src="/logo-hq.jpg" alt="Algeria2Malaysia" className="relative w-16 h-16 rounded-full border-2 border-white/40 object-cover shadow-xl ring-2 ring-green-400/40 ring-offset-2 ring-offset-green-900" />
+            </div>
           </div>
           <div className="text-xl font-bold mb-1">Algeria2Malaysia</div>
           <div className="text-green-300 text-sm mb-6">من الجزائر إلى ماليزيا — مستقبلك يبدأ هنا</div>
