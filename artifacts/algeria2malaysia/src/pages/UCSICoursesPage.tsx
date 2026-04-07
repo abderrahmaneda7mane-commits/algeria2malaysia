@@ -82,7 +82,7 @@ export default function UCSICoursesPage() {
                   <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-gray-600">
                     {course.duration != null && <span className="flex items-center gap-1.5"><Clock size={14} className="text-pink-500 flex-shrink-0" />{course.duration} {Number(course.duration) === 1 ? "سنة" : "سنوات"}</span>}
                     {course.intake && <span className="flex items-center gap-1.5"><Calendar size={14} className="text-pink-500 flex-shrink-0" />{course.intake.trim()}</span>}
-                    <span className="flex items-center gap-1.5"><DollarSign size={14} className="text-pink-500 flex-shrink-0" />{course.price == null || course.price === 0 ? <span className="text-gray-400 italic">السعر غير متوفر</span> : <><span className="font-semibold text-green-700">{course.price.toLocaleString()} RM</span><span className="text-gray-400 text-xs">/ € {toEur(course.price)}</span><span className="text-gray-400 text-xs">· / year</span></>}</span>
+                    <span className="flex items-center gap-1.5"><DollarSign size={14} className="text-pink-500 flex-shrink-0" />{course.price == null || course.price === 0 ? <span className="text-gray-400 italic">السعر غير متوفر</span> : <><span className="font-semibold text-green-700">{course.price.toLocaleString()} RM</span><span className="text-gray-400 text-xs">/ € {toEur(course.price)}</span><span className="text-gray-400 text-xs">· / سنة</span></>}</span>
                   </div>
                 </div>
               ))}

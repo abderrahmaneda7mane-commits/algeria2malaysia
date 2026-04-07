@@ -250,7 +250,7 @@ export default function GlobalSearchPage() {
                             )}
                             {course.price != null && course.price > 0 && (
                               <span className="flex items-center gap-1 text-xs text-green-700 font-medium">
-                                <DollarSign size={11} />{course.price.toLocaleString()} RM
+                                <DollarSign size={11} />{course.price.toLocaleString()} RM / سنة
                               </span>
                             )}
                           </div>
@@ -348,8 +348,8 @@ export default function GlobalSearchPage() {
                         <DollarSign size={15} />
                         <span className="text-xs font-semibold">الرسوم السنوية</span>
                       </div>
-                      <p className="text-gray-800 text-sm font-bold">{modal.price.toLocaleString()} RM</p>
-                      <p className="text-gray-500 text-xs">≈ € {toEur(modal.price)} / year</p>
+                      <p className="text-gray-800 text-sm font-bold">{modal.price.toLocaleString()} <span className="font-normal text-gray-500">RM / سنة</span></p>
+                      <p className="text-gray-500 text-xs">≈ € {toEur(modal.price)} / سنة</p>
                     </div>
                   )}
                 </div>
@@ -476,7 +476,7 @@ export default function GlobalSearchPage() {
                               <p className={`text-sm font-extrabold ${isCheapest ? "text-green-600" : "text-gray-900"}`}>
                                 {price.toLocaleString()} RM
                               </p>
-                              <p className="text-xs text-gray-400">≈ €{toEur(price)}</p>
+                              <p className="text-xs text-gray-400">/ سنة · ≈ €{toEur(price)}</p>
                               {diffPct > 0 && (
                                 <span className="text-[10px] text-orange-500 font-semibold">+{diffPct}%</span>
                               )}
