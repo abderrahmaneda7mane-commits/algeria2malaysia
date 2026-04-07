@@ -72,6 +72,7 @@ export function useCourses(universityId: number, priceRanges: PriceRange[]) {
       if (pr.max < Infinity) query = query.lt("price", pr.max);
 
       const { data, count, error: sbError } = await query
+        .order("price", { ascending: true, nullsFirst: false })
         .order("name")
         .range(start, end);
 

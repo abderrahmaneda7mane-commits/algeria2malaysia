@@ -87,8 +87,10 @@ export default function GlobalSearchPage() {
         .from("courses")
         .select("id, name, duration, intake, price, university_id")
         .ilike("name", `%${term.trim()}%`)
-        .order("university_id")
-        .limit(50);
+        .not("price", "is", null)
+        .gt("price", 0)
+        .order("price", { ascending: true })
+        .limit(60);
       setResults(data ?? []);
     } catch { setResults([]); } finally { setLoading(false); }
   }, []);
@@ -121,6 +123,14 @@ export default function GlobalSearchPage() {
     (acc[c.university_id] ??= []).push(c);
     return acc;
   }, {});
+
+  const sortedUniIds = Object.keys(grouped)
+    .map(Number)
+    .sort((a, b) => {
+      const minA = Math.min(...grouped[a].map(c => c.price ?? Infinity));
+      const minB = Math.min(...grouped[b].map(c => c.price ?? Infinity));
+      return minA - minB;
+    });
 
   const minPrice = compareResults.length ? compareResults[0].price ?? 0 : 0;
 
@@ -213,8 +223,8 @@ export default function GlobalSearchPage() {
             <p className="text-xs text-gray-400 pt-2 pb-1 pr-1">
               {results.length} نتيجة في {Object.keys(grouped).length} جامعة
             </p>
-            {Object.entries(grouped).map(([uniIdStr, courses]) => {
-              const uniId = Number(uniIdStr);
+            {sortedUniIds.map((uniId) => {
+              const courses = grouped[uniId];
               const meta = UNI_META[uniId];
               if (!meta) return null;
               return (
@@ -249,8 +259,12 @@ export default function GlobalSearchPage() {
                               </span>
                             )}
                             {course.price != null && course.price > 0 && (
-                              <span className="flex items-center gap-1 text-xs text-green-700 font-medium">
-                                <DollarSign size={11} />{course.price.toLocaleString()} RM / سنة
+                              <span className="flex items-center gap-1 text-xs font-medium">
+                                <DollarSign size={11} className="text-green-600" />
+                                <span className="text-green-700">{course.price.toLocaleString()} RM</span>
+                                <span className="text-gray-300">·</span>
+                                <span className="text-indigo-600">€ {toEur(course.price)}</span>
+                                <span className="text-gray-400">/ سنة</span>
                               </span>
                             )}
                           </div>
