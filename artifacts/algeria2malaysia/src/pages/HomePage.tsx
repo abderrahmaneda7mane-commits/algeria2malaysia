@@ -218,18 +218,32 @@ export default function HomePage() {
             </a>
           </div>
 
-          <div className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-xl mx-auto">
-            {[
-              { num: "12+", label: "جامعة شريكة" },
-              { num: "3+", label: "معاهد معتمدة" },
-              { num: "100%", label: "شفافية بالأسعار" },
-              { num: "24h", label: "رد سريع" },
-            ].map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="text-3xl font-bold text-white">{stat.num}</div>
-                <div className="text-xs text-green-200 mt-1">{stat.label}</div>
-              </div>
-            ))}
+          <div className="mt-14 max-w-2xl mx-auto">
+            <div className="grid grid-cols-3 gap-3 mb-3">
+              {[
+                { num: "2000+", label: "تخصص وكورس", icon: "📚" },
+                { num: "12+", label: "جامعة شريكة", icon: "🎓" },
+                { num: "3+", label: "معاهد معتمدة", icon: "🏫" },
+              ].map((stat) => (
+                <div key={stat.label} className="text-center bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl py-4 px-2">
+                  <div className="text-xl mb-1">{stat.icon}</div>
+                  <div className="text-2xl font-extrabold text-white leading-none">{stat.num}</div>
+                  <div className="text-[11px] text-green-200 mt-1 font-medium">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              {[
+                { num: "100%", label: "شفافية بالأسعار", icon: "✅" },
+                { num: "24h", label: "رد سريع", icon: "⚡" },
+              ].map((stat) => (
+                <div key={stat.label} className="text-center bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl py-4 px-2">
+                  <div className="text-xl mb-1">{stat.icon}</div>
+                  <div className="text-2xl font-extrabold text-white leading-none">{stat.num}</div>
+                  <div className="text-[11px] text-green-200 mt-1 font-medium">{stat.label}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 

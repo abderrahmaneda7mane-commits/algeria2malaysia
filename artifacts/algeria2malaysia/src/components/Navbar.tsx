@@ -40,15 +40,12 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/97 backdrop-blur-sm border-b border-green-100 shadow-sm">
       <div className="max-w-6xl mx-auto px-4 h-18 flex items-center justify-between" style={{ height: "72px" }}>
         <div className="flex items-center gap-3 cursor-pointer" onClick={() => handleNavLink("hero", null)}>
-          <div className="relative flex-shrink-0">
-            <div className="absolute inset-0 rounded-full bg-green-400/25 blur-md scale-110" />
-            <div className="relative w-13 h-13 rounded-full ring-2 ring-green-500/60 ring-offset-1 ring-offset-white shadow-lg overflow-hidden" style={{ width: 52, height: 52 }}>
-              <img
-                src="/logo-hq.jpg"
-                alt="Algeria2Malaysia"
-                className="w-full h-full object-cover"
-              />
-            </div>
+          <div className="flex-shrink-0 w-14 h-14 rounded-full overflow-hidden border-2 border-green-500 shadow-md bg-white" style={{ width: 56, height: 56 }}>
+            <img
+              src="/logo-hq.jpg"
+              alt="Algeria2Malaysia"
+              className="w-full h-full object-cover"
+            />
           </div>
           <div>
             <div className="text-green-800 font-extrabold text-base leading-tight tracking-tight">Algeria2Malaysia</div>
