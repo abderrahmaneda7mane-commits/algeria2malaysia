@@ -514,6 +514,76 @@ export default function UniversitiesPage() {
                         <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
                       </button>
                     )}
+                    {uni.id === "unikl" && (
+                      <button
+                        onClick={() => go("unikl")}
+                        className="flex-1 bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-full font-bold text-sm transition-all shadow-md flex items-center justify-center gap-2 group"
+                      >
+                        <BookOpen size={16} />
+                        <span>استعرض تخصصات UniKL</span>
+                        <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
+                      </button>
+                    )}
+                    {uni.id === "lincoln" && (
+                      <button
+                        onClick={() => go("lincoln")}
+                        className="flex-1 bg-green-700 hover:bg-green-800 text-white px-6 py-3 rounded-full font-bold text-sm transition-all shadow-md flex items-center justify-center gap-2 group"
+                      >
+                        <BookOpen size={16} />
+                        <span>استعرض تخصصات Lincoln</span>
+                        <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
+                      </button>
+                    )}
+                    {uni.id === "utp" && (
+                      <button
+                        onClick={() => go("utp")}
+                        className="flex-1 bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-3 rounded-full font-bold text-sm transition-all shadow-md flex items-center justify-center gap-2 group"
+                      >
+                        <BookOpen size={16} />
+                        <span>استعرض تخصصات UTP</span>
+                        <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
+                      </button>
+                    )}
+                    {uni.id === "utm" && (
+                      <button
+                        onClick={() => go("utm")}
+                        className="flex-1 bg-sky-600 hover:bg-sky-700 text-white px-6 py-3 rounded-full font-bold text-sm transition-all shadow-md flex items-center justify-center gap-2 group"
+                      >
+                        <BookOpen size={16} />
+                        <span>استعرض تخصصات UTM</span>
+                        <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
+                      </button>
+                    )}
+                    {uni.id === "utem" && (
+                      <button
+                        onClick={() => go("utem")}
+                        className="flex-1 bg-rose-600 hover:bg-rose-700 text-white px-6 py-3 rounded-full font-bold text-sm transition-all shadow-md flex items-center justify-center gap-2 group"
+                      >
+                        <BookOpen size={16} />
+                        <span>استعرض تخصصات UTeM</span>
+                        <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
+                      </button>
+                    )}
+                    {uni.id === "ucsi" && (
+                      <button
+                        onClick={() => go("ucsi")}
+                        className="flex-1 bg-pink-600 hover:bg-pink-700 text-white px-6 py-3 rounded-full font-bold text-sm transition-all shadow-md flex items-center justify-center gap-2 group"
+                      >
+                        <BookOpen size={16} />
+                        <span>استعرض تخصصات UCSI</span>
+                        <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
+                      </button>
+                    )}
+                    {uni.id === "cityu" && (
+                      <button
+                        onClick={() => go("cityu-courses")}
+                        className="flex-1 bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-full font-bold text-sm transition-all shadow-md flex items-center justify-center gap-2 group"
+                      >
+                        <BookOpen size={16} />
+                        <span>استعرض تخصصات City University</span>
+                        <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
+                      </button>
+                    )}
                     <button
                       onClick={() => go("apply", { type: "university" })}
                       className={`flex-1 ${accent.badge} hover:opacity-90 text-white px-6 py-3 rounded-full font-bold text-sm transition-all shadow-md flex items-center justify-center gap-2 group`}
