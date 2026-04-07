@@ -8,7 +8,7 @@ import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 const port = Number(process.env.PORT) || 5173;
 
 // ✅ حل مشكلة BASE_PATH في Vercel
-const basePath = process.env.BASE_PATH || "/";
+const basePath = "/";
 
 export default defineConfig({
   base: basePath,
