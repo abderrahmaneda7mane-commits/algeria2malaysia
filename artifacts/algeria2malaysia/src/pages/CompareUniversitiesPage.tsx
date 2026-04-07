@@ -408,55 +408,44 @@ export default function CompareUniversitiesPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white" dir="rtl">
       {/* ── Header ── */}
-      <div className="bg-gradient-to-br from-green-950 via-green-900 to-green-800 pt-12 pb-20 px-4">
+      <div className="bg-gradient-to-br from-green-950 via-green-900 to-green-800 pt-10 pb-16 px-4">
         <div className="max-w-5xl mx-auto">
           <button
             onClick={() => setComparing(false)}
-            className="inline-flex items-center gap-2 text-green-300/80 hover:text-white text-sm mb-8 transition-colors group"
+            className="inline-flex items-center gap-2 text-green-300/80 hover:text-white text-sm mb-6 transition-colors group"
           >
             <ArrowLeft size={16} className="group-hover:-translate-x-0.5 transition-transform" />
             تغيير الاختيار
           </button>
-          <div className="flex items-start gap-4">
-            <div className="w-12 h-12 bg-white/15 backdrop-blur rounded-2xl flex items-center justify-center border border-white/20 flex-shrink-0">
-              <BarChart2 size={22} className="text-white" />
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-white/15 backdrop-blur rounded-2xl flex items-center justify-center border border-white/20 flex-shrink-0">
+              <BarChart2 size={20} className="text-white" />
             </div>
             <div>
-              <h1 className="text-3xl font-extrabold text-white">مقارنة الجامعات</h1>
-              <div className="flex flex-wrap gap-2 mt-2">
-                {selectedUnis.map(u => (
-                  <span key={u.id} className={`inline-flex items-center gap-1.5 text-xs px-3 py-1 rounded-full font-semibold bg-white/15 text-white border border-white/20`}>
-                    <img src={u.logo} alt={u.name} className="w-3.5 h-3.5 object-contain brightness-0 invert" />
-                    {u.nameAr}
-                  </span>
-                ))}
-              </div>
+              <h1 className="text-2xl font-extrabold text-white">مقارنة الجامعات</h1>
+              <p className="text-green-300 text-xs mt-0.5">{selectedUnis.map(u => u.name).join(" · ")}</p>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="max-w-5xl mx-auto px-3 sm:px-4 -mt-10 pb-20">
-        {/* ── University header cards ── */}
-        <div
-          className="grid gap-3 mb-4"
-          style={{ gridTemplateColumns: `160px repeat(${cols}, 1fr)` }}
-        >
-          <div className="rounded-3xl bg-white/0" />
+      <div className="max-w-5xl mx-auto px-3 sm:px-4 -mt-8 pb-24">
+
+        {/* ── University header cards — sticky on mobile ── */}
+        <div className={`grid gap-2 mb-4`} style={{ gridTemplateColumns: `repeat(${cols}, 1fr)` }}>
           {selectedUnis.map(uni => (
-            <div key={uni.id} className={`relative bg-white rounded-3xl shadow-xl border-2 ${uni.accent.border} p-5 text-center`}>
+            <div key={uni.id} className={`relative bg-white rounded-2xl shadow-lg border-2 ${uni.accent.border} p-3 text-center`}>
               <button
                 onClick={() => { setSelected(prev => prev.filter(x => x !== uni.id)); if (selected.length <= 2) setComparing(false); }}
-                className="absolute top-3 left-3 w-6 h-6 rounded-full bg-gray-100 hover:bg-red-100 flex items-center justify-center text-gray-400 hover:text-red-500 transition-colors"
+                className="absolute top-2 left-2 w-5 h-5 rounded-full bg-gray-100 hover:bg-red-100 flex items-center justify-center text-gray-400 hover:text-red-500 transition-colors"
               >
-                <X size={12} strokeWidth={2.5} />
+                <X size={10} strokeWidth={2.5} />
               </button>
-              <div className={`w-16 h-16 ${uni.accent.bg} rounded-2xl mx-auto mb-3 flex items-center justify-center border ${uni.accent.border} p-2`}>
+              <div className={`w-12 h-12 sm:w-14 sm:h-14 ${uni.accent.bg} rounded-xl mx-auto mb-2 flex items-center justify-center border ${uni.accent.border} p-1.5`}>
                 <img src={uni.logo} alt={uni.name} className="max-w-full max-h-full object-contain" />
               </div>
-              <p className={`font-extrabold text-sm leading-tight ${uni.accent.text}`}>{uni.nameAr}</p>
-              <p className="text-[11px] text-gray-400 mt-1 leading-tight">{uni.nameFull}</p>
-              <span className={`inline-block mt-2 text-[10px] px-2.5 py-1 rounded-full font-semibold text-white ${uni.badgeColor}`}>
+              <p className={`font-extrabold text-xs leading-tight ${uni.accent.text}`}>{uni.nameAr}</p>
+              <span className={`inline-block mt-1.5 text-[10px] px-2 py-0.5 rounded-full font-semibold text-white ${uni.badgeColor}`}>
                 {uni.badge}
               </span>
             </div>
@@ -464,54 +453,53 @@ export default function CompareUniversitiesPage() {
         </div>
 
         {/* ── Comparison rows ── */}
-        <div className="space-y-3">
+        <div className="space-y-2">
           {ROWS.map((row, ri) => (
             <div
               key={ri}
-              className={`grid gap-0 rounded-3xl overflow-hidden shadow-sm border border-gray-100 ${row.alt ? "bg-gray-50/80" : "bg-white"}`}
-              style={{ gridTemplateColumns: `160px repeat(${cols}, 1fr)` }}
+              className={`rounded-2xl overflow-hidden shadow-sm border border-gray-100 ${row.alt ? "bg-gray-50" : "bg-white"}`}
             >
-              {/* Label cell */}
-              <div className="flex flex-col items-center justify-center px-3 py-5 bg-white border-l border-gray-100 gap-2">
-                <span className="w-8 h-8 rounded-xl bg-green-50 border border-green-100 flex items-center justify-center text-green-700">
+              {/* Row label — full width on all screens */}
+              <div className="flex items-center gap-2.5 px-4 py-3 border-b border-gray-100 bg-white">
+                <span className="w-7 h-7 rounded-xl bg-green-50 border border-green-100 flex items-center justify-center text-green-700 flex-shrink-0">
                   {row.icon}
                 </span>
-                <span className="text-xs font-bold text-gray-600 text-center leading-tight">{row.label}</span>
+                <span className="text-sm font-bold text-gray-700">{row.label}</span>
               </div>
-              {/* Value cells */}
-              {selectedUnis.map((uni, i) => (
-                <div
-                  key={uni.id}
-                  className={`px-4 py-5 ${i < cols - 1 ? "border-l border-gray-100" : ""}`}
-                >
-                  {row.render(uni)}
-                </div>
-              ))}
+              {/* Values grid — columns = number of selected unis */}
+              <div
+                className="grid"
+                style={{ gridTemplateColumns: `repeat(${cols}, 1fr)` }}
+              >
+                {selectedUnis.map((uni, i) => (
+                  <div
+                    key={uni.id}
+                    className={`px-3 py-4 sm:px-4 ${i < cols - 1 ? "border-l border-gray-100" : ""}`}
+                  >
+                    {row.render(uni)}
+                  </div>
+                ))}
+              </div>
             </div>
           ))}
         </div>
 
         {/* ── Apply buttons ── */}
-        <div
-          className="grid gap-3 mt-5"
-          style={{ gridTemplateColumns: `160px repeat(${cols}, 1fr)` }}
-        >
-          <div className="flex items-center justify-center">
-            <div className="flex flex-col items-center gap-1 text-center">
-              <FileText size={18} className="text-green-700" />
-              <span className="text-xs font-bold text-gray-600 leading-tight">طلب خطاب القبول</span>
-            </div>
+        <div className="mt-4 space-y-2">
+          <p className="text-xs font-bold text-gray-500 text-center mb-3">اطلب خطاب القبول من الجامعة التي تناسبك</p>
+          <div className="grid gap-2" style={{ gridTemplateColumns: `repeat(${cols}, 1fr)` }}>
+            {selectedUnis.map(uni => (
+              <button
+                key={uni.id}
+                onClick={() => go("uni-apply", { university: uni.uniKey })}
+                className={`w-full ${uni.accent.solid} ${uni.accent.hover} active:scale-95 text-white py-4 rounded-2xl font-extrabold text-xs sm:text-sm transition-all shadow-lg flex flex-col items-center justify-center gap-1 border-b-4 border-black/10`}
+              >
+                <FileText size={16} />
+                <span>خطاب القبول</span>
+                <span className="font-bold opacity-80">{uni.name}</span>
+              </button>
+            ))}
           </div>
-          {selectedUnis.map((uni, i) => (
-            <button
-              key={uni.id}
-              onClick={() => go("uni-apply", { university: uni.uniKey })}
-              className={`w-full ${uni.accent.solid} ${uni.accent.hover} active:scale-95 text-white py-4 rounded-3xl font-extrabold text-sm transition-all shadow-lg flex items-center justify-center gap-2 border-b-4 border-black/10`}
-            >
-              <FileText size={16} />
-              خطاب القبول من {uni.name}
-            </button>
-          ))}
         </div>
       </div>
     </div>
