@@ -239,16 +239,6 @@ export default function ApplyPage({ initialType }: { initialType?: "institute" |
                 <span>ابدأ بملء النموذج الآن</span>
               </a>
               <p className="text-center text-xs text-gray-400 mb-4">يستغرق النموذج دقيقتين فقط</p>
-
-              <a
-                href={`https://wa.me/601112200603?text=${encodeURIComponent(buildUniversityWhatsApp())}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 w-full border-2 border-gray-200 text-gray-700 hover:border-green-400 hover:text-green-700 py-3.5 rounded-2xl font-semibold text-sm transition-colors"
-              >
-                <span>💬</span>
-                <span>أو تواصل معنا مباشرة عبر واتساب</span>
-              </a>
             </div>
           </div>
         </div>
