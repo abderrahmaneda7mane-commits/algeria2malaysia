@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { ArrowLeft, CheckCircle, GraduationCap, MapPin, BookOpen, Building2 } from "lucide-react";
+import { ArrowLeft, CheckCircle, GraduationCap, MapPin, BookOpen } from "lucide-react";
 import { useNavigate, getNavState } from "../hooks/useNavigate";
 
 const WA_LINK = "https://wa.me/601112200603";
@@ -585,19 +585,12 @@ export default function UniversitiesPage() {
                       </button>
                     )}
                     <button
-                      onClick={() => go("apply", { type: "university" })}
-                      className={`flex-1 ${accent.badge} hover:opacity-90 text-white px-6 py-3 rounded-full font-bold text-sm transition-all shadow-md flex items-center justify-center gap-2 group`}
-                    >
-                      <Building2 size={16} />
-                      <span>التقديم لـ {uni.name}</span>
-                      <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
-                    </button>
-                    <button
                       onClick={() => go("uni-apply", { university: uni.name })}
-                      className="flex-1 bg-amber-500 hover:bg-amber-600 text-white px-6 py-3 rounded-full font-bold text-sm transition-all shadow-md flex items-center justify-center gap-2"
+                      className="flex-1 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-full font-bold text-sm transition-all shadow-md flex items-center justify-center gap-2 group"
                     >
                       <span>📄</span>
-                      طلب Offer Letter
+                      <span>طلب خطاب القبول من {uni.name}</span>
+                      <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
                     </button>
                     <a
                       href={WA_LINK}
