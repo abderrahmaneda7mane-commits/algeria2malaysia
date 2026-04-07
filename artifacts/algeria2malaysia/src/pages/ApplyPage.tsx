@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowRight, ArrowLeft, CheckCircle, BookOpen, Building2, DollarSign, Target, BedDouble, Calendar } from "lucide-react";
+import { ArrowRight, ArrowLeft, CheckCircle, BookOpen, Building2, DollarSign, Target, BedDouble, Calendar, GraduationCap } from "lucide-react";
 import { INSTITUTES, ACCOMMODATION_OPTIONS, suggestInstitutes, GOOGLE_FORM_LINKS, toEur } from "../data/institutes";
 import type { Goal, RoomType } from "../data/institutes";
 import { useNavigate } from "../hooks/useNavigate";
@@ -114,37 +114,68 @@ export default function ApplyPage({ initialType }: { initialType?: "institute" |
 
   if (step === "type") {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center py-20 px-4" dir="rtl">
-        <div className="w-full max-w-lg bg-white rounded-3xl shadow-xl p-8">
-          <button onClick={() => go("home")} className="flex items-center gap-2 text-green-700 text-sm mb-6 hover:underline">
-            <ArrowRight size={16} /> العودة للرئيسية
+      <div className="min-h-screen bg-gradient-to-br from-green-900 via-green-800 to-green-700 flex items-center justify-center py-10 px-4" dir="rtl">
+        <div className="w-full max-w-lg">
+          <button onClick={() => go("home")} className="flex items-center gap-2 text-green-200 hover:text-white text-sm mb-6 transition-colors">
+            <ArrowRight size={16} /> الرئيسية
           </button>
-          <h1 className="text-2xl font-bold text-gray-900 mb-2 text-center">ما هو مسارك؟</h1>
-          <p className="text-gray-500 text-sm text-center mb-8">اختر نوع الدراسة التي تريدها في ماليزيا</p>
-          <div className="flex flex-col gap-4">
-            <Card
-              icon={<BookOpen size={22} />}
-              title="معهد اللغة الإنجليزية"
-              desc="IELTS، إنجليزي عام، مسار جامعي"
-              selected={form.type === "institute"}
-              onClick={() => setForm({ ...form, type: "institute" })}
-            />
-            <Card
-              icon={<Building2 size={22} />}
-              title="القبول الجامعي"
-              desc="بكالوريوس، ماستر، دكتوراه"
-              selected={form.type === "university"}
-              onClick={() => setForm({ ...form, type: "university" })}
-            />
+
+          <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
+            {/* Header */}
+            <div className="bg-gradient-to-r from-green-600 to-green-500 px-8 py-7 text-center">
+              <div className="inline-flex items-center gap-2 bg-white/20 rounded-full px-4 py-1.5 mb-3">
+                <span className="text-white text-xs font-medium">Algeria2Malaysia</span>
+              </div>
+              <h1 className="text-2xl font-bold text-white mb-1">ابدأ رحلتك التعليمية</h1>
+              <p className="text-green-100 text-sm">اختر نوع الدراسة التي تريدها في ماليزيا</p>
+            </div>
+
+            <div className="px-8 py-7">
+              <div className="flex flex-col gap-4 mb-7">
+                {/* Institute option */}
+                <button
+                  onClick={() => { setForm({ ...form, type: "institute" }); setStep("goal"); }}
+                  className={`w-full text-right p-5 rounded-2xl border-2 transition-all hover:shadow-md group ${
+                    form.type === "institute" ? "border-green-600 bg-green-50" : "border-gray-200 bg-white hover:border-green-300"
+                  }`}
+                >
+                  <div className="flex items-center gap-4">
+                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 transition-colors ${form.type === "institute" ? "bg-green-600 text-white" : "bg-blue-50 text-blue-600 group-hover:bg-blue-100"}`}>
+                      <BookOpen size={26} />
+                    </div>
+                    <div className="flex-1">
+                      <div className="font-bold text-gray-900 text-base">معهد اللغة الإنجليزية</div>
+                      <div className="text-sm text-gray-500 mt-0.5">IELTS · إنجليزي عام · مسار جامعي</div>
+                    </div>
+                    <ArrowLeft size={18} className="text-gray-300 group-hover:text-green-500 transition-colors" />
+                  </div>
+                </button>
+
+                {/* University option */}
+                <button
+                  onClick={() => { setForm({ ...form, type: "university" }); setStep("university-redirect"); }}
+                  className={`w-full text-right p-5 rounded-2xl border-2 transition-all hover:shadow-md group ${
+                    form.type === "university" ? "border-green-600 bg-green-50" : "border-gray-200 bg-white hover:border-green-300"
+                  }`}
+                >
+                  <div className="flex items-center gap-4">
+                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 transition-colors ${form.type === "university" ? "bg-green-600 text-white" : "bg-green-50 text-green-600 group-hover:bg-green-100"}`}>
+                      <GraduationCap size={26} />
+                    </div>
+                    <div className="flex-1">
+                      <div className="font-bold text-gray-900 text-base">القبول الجامعي</div>
+                      <div className="text-sm text-gray-500 mt-0.5">بكالوريوس · ماستر · دكتوراه</div>
+                    </div>
+                    <ArrowLeft size={18} className="text-gray-300 group-hover:text-green-500 transition-colors" />
+                  </div>
+                </button>
+              </div>
+
+              <p className="text-center text-xs text-gray-400">
+                11 جامعة معتمدة · أكثر من 2,000 تخصص
+              </p>
+            </div>
           </div>
-          <button
-            disabled={!form.type}
-            onClick={() => setStep(form.type === "university" ? "university-redirect" : "goal")}
-            className="w-full mt-6 bg-green-700 text-white py-4 rounded-full font-bold text-lg disabled:opacity-40 disabled:cursor-not-allowed hover:bg-green-800 transition-colors flex items-center justify-center gap-2"
-          >
-            <span>التالي</span>
-            <ArrowLeft size={18} />
-          </button>
         </div>
       </div>
     );
@@ -152,45 +183,74 @@ export default function ApplyPage({ initialType }: { initialType?: "institute" |
 
   if (step === "university-redirect") {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center py-20 px-4" dir="rtl">
-        <div className="w-full max-w-lg bg-white rounded-3xl shadow-xl p-8 text-center">
-          <button onClick={() => setStep("type")} className="flex items-center gap-2 text-green-700 text-sm mb-6 hover:underline">
+      <div className="min-h-screen bg-gradient-to-br from-green-900 via-green-800 to-green-700 flex items-center justify-center py-10 px-4" dir="rtl">
+        <div className="w-full max-w-lg">
+          <button
+            onClick={() => setStep("type")}
+            className="flex items-center gap-2 text-green-200 hover:text-white text-sm mb-6 transition-colors"
+          >
             <ArrowRight size={16} /> رجوع
           </button>
-          <Building2 className="mx-auto text-green-700 mb-4" size={48} />
-          <h1 className="text-2xl font-bold text-gray-900 mb-3">طلب القبول الجامعي</h1>
-          <p className="text-gray-600 text-sm mb-6 leading-relaxed">
-            لإتمام طلبك، ستحتاج إلى تقديم الوثائق التالية:
-          </p>
-          <div className="text-right bg-green-50 rounded-2xl p-5 mb-6 space-y-3">
-            {[
-              "✅ جواز السفر (صالح لمدة سنة على الأقل)",
-              "✅ شهادة البكالوريا (أو ما يعادلها)",
-              "✅ شهادة IELTS (اختيارية إن وجدت)",
-            ].map((doc) => (
-              <div key={doc} className="text-sm text-gray-700 font-medium">{doc}</div>
-            ))}
+
+          <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
+            {/* Top banner */}
+            <div className="bg-gradient-to-r from-green-600 to-green-500 px-8 py-6 text-center">
+              <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                <GraduationCap size={32} className="text-white" />
+              </div>
+              <h1 className="text-2xl font-bold text-white mb-1">القبول الجامعي في ماليزيا</h1>
+              <p className="text-green-100 text-sm">نحن نتكفل بإيجاد أفضل جامعة تناسبك</p>
+            </div>
+
+            <div className="px-8 py-7">
+              {/* How it works */}
+              <p className="text-gray-700 text-sm font-semibold mb-4 text-center">كيف يعمل ذلك؟</p>
+              <div className="space-y-3 mb-7">
+                {[
+                  { num: "١", text: "تملأ النموذج بمعلوماتك وميزانيتك والتخصص الذي تريده" },
+                  { num: "٢", text: "يراجع فريقنا طلبك ويختار أفضل جامعة تناسب وضعك" },
+                  { num: "٣", text: "نتواصل معك خلال 24 ساعة بعرض مخصص لك" },
+                ].map((step) => (
+                  <div key={step.num} className="flex items-start gap-3">
+                    <div className="w-7 h-7 bg-green-600 text-white rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">
+                      {step.num}
+                    </div>
+                    <p className="text-gray-700 text-sm leading-relaxed">{step.text}</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Info box */}
+              <div className="bg-green-50 border border-green-200 rounded-2xl p-4 mb-6">
+                <p className="text-green-800 text-sm font-medium text-center">
+                  🎓 أكثر من 2,000 تخصص في 11 جامعة ماليزية معتمدة
+                </p>
+              </div>
+
+              {/* CTA */}
+              <a
+                href={GOOGLE_FORM_LINKS.university}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setTimeout(() => go("thank-you"), 500)}
+                className="flex items-center justify-center gap-3 w-full bg-green-700 hover:bg-green-800 text-white py-4 rounded-2xl font-bold text-lg transition-colors shadow-lg mb-3"
+              >
+                <span>📋</span>
+                <span>ابدأ بملء النموذج الآن</span>
+              </a>
+              <p className="text-center text-xs text-gray-400 mb-4">يستغرق النموذج دقيقتين فقط</p>
+
+              <a
+                href={`https://wa.me/601112200603?text=${encodeURIComponent(buildUniversityWhatsApp())}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 w-full border-2 border-gray-200 text-gray-700 hover:border-green-400 hover:text-green-700 py-3.5 rounded-2xl font-semibold text-sm transition-colors"
+              >
+                <span>💬</span>
+                <span>أو تواصل معنا مباشرة عبر واتساب</span>
+              </a>
+            </div>
           </div>
-          <p className="text-gray-500 text-sm mb-6">
-            انقر على الزر أدناه لملء نموذج التقديم عبر Google Forms. سيتواصل معك فريقنا خلال 24 ساعة.
-          </p>
-          <a
-            href={GOOGLE_FORM_LINKS.university}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => setTimeout(() => go("thank-you"), 500)}
-            className="block w-full bg-green-700 text-white py-4 rounded-full font-bold text-lg hover:bg-green-800 transition-colors mb-3"
-          >
-            🎓 ملء نموذج التقديم
-          </a>
-          <a
-            href={`https://wa.me/601112200603?text=${encodeURIComponent(buildUniversityWhatsApp())}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block w-full border-2 border-green-600 text-green-700 py-4 rounded-full font-bold text-lg hover:bg-green-50 transition-colors"
-          >
-            💬 تواصل عبر واتساب
-          </a>
         </div>
       </div>
     );
