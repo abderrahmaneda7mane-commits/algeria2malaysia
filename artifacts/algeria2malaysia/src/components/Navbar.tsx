@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Search } from "lucide-react";
 import { useNavigate, getNavState, navigate } from "../hooks/useNavigate";
 
 function scrollToSection(sectionId: string) {
@@ -64,6 +64,14 @@ export default function Navbar() {
             </button>
           ))}
           <button
+            onClick={() => navigate("search")}
+            className="flex items-center gap-1.5 border border-gray-200 text-gray-600 hover:text-green-700 hover:border-green-300 bg-gray-50 hover:bg-green-50 px-4 py-2 rounded-full text-sm font-medium transition-all"
+            title="بحث عن تخصص"
+          >
+            <Search size={15} />
+            <span>ابحث عن تخصص</span>
+          </button>
+          <button
             onClick={() => handleNavLink("apply", null)}
             className="bg-green-700 text-white px-5 py-2.5 rounded-full text-sm font-bold hover:bg-green-800 transition-colors shadow-sm"
           >
@@ -82,6 +90,13 @@ export default function Navbar() {
 
       {open && (
         <div className="md:hidden bg-white border-t border-green-100 px-4 py-4 flex flex-col gap-3">
+          <button
+            onClick={() => { setOpen(false); navigate("search"); }}
+            className="flex items-center gap-2 border border-green-200 text-green-700 bg-green-50 px-4 py-2.5 rounded-full text-sm font-semibold justify-center"
+          >
+            <Search size={15} />
+            ابحث عن تخصص
+          </button>
           {links.map((l) => (
             <button
               key={l.label}
