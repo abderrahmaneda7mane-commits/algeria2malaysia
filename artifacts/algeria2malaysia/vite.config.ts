@@ -49,8 +49,8 @@ export default defineConfig({
   root: path.resolve(import.meta.dirname),
 
   // ✅ أهم تعديل (حل المشكلة)
-  build: {
-    outDir: path.resolve(import.meta.dirname, "dist"),
+ build: {
+    outDir: "dist",
     emptyOutDir: true,
   },
 
