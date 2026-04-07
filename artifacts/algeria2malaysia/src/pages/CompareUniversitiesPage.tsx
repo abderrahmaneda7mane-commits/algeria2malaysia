@@ -192,7 +192,6 @@ const UNIVERSITIES = [
 
 const MAX_SELECT = 3;
 
-const GOOGLE_FORM_UNIVERSITY = "https://docs.google.com/forms/d/e/1FAIpQLSc8aVYOjwvoI_5aOoum-9Ko4JD-Fa4Hlr99-FfNRFhSKVDOBQ/viewform";
 
 export default function CompareUniversitiesPage() {
   const { go } = useNavigate();
@@ -473,20 +472,12 @@ export default function CompareUniversitiesPage() {
             <span className="text-sm font-bold text-gray-700">طلب القبول</span>
           </div>
           {selectedUnis.map(uni => (
-            <div key={uni.id} className="flex flex-col gap-2">
-              <a
-                href={GOOGLE_FORM_UNIVERSITY}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`flex items-center justify-center gap-2 w-full ${uni.accent.btn} text-white py-3 rounded-2xl font-bold text-sm transition-all shadow-md`}
-              >
-                <FileText size={15} />
-                <span>طلب القبول</span>
-              </a>
+            <div key={uni.id}>
               <button
                 onClick={() => go("uni-apply", { university: uni.uniKey })}
-                className={`flex items-center justify-center gap-1.5 w-full bg-white border-2 ${uni.accent.border} ${uni.accent.text} py-2.5 rounded-2xl font-semibold text-xs transition-all hover:opacity-80`}
+                className={`flex items-center justify-center gap-1.5 w-full ${uni.accent.btn} text-white py-3 rounded-2xl font-bold text-sm transition-all shadow-md`}
               >
+                <FileText size={15} />
                 خطاب القبول من {uni.name}
               </button>
             </div>
