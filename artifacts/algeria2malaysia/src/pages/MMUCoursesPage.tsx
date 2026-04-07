@@ -106,7 +106,7 @@ export default function MMUCoursesPage() {
                       <DollarSign size={14} className="text-teal-500 flex-shrink-0" />
                       {course.price == null || course.price === 0
                         ? <span className="text-gray-400 italic">السعر غير متوفر</span>
-                        : <><span className="font-semibold text-green-700">{course.price.toLocaleString()} RM</span><span className="text-gray-400 text-xs"> / سنة · € {toEur(course.price)}</span></>}
+                        : <><span className="font-semibold text-green-700">{course.price.toLocaleString()} RM</span><span className="text-gray-400 text-xs"> / سنة</span><span className="text-gray-300 mx-1.5">·</span><span className="font-semibold text-indigo-600">€ {toEur(course.price)}</span><span className="text-gray-400 text-xs"> / سنة</span></>}
                     </span>
                   </div>
                 </div>
