@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { ArrowLeft, CheckCircle, GraduationCap, MapPin, BookOpen } from "lucide-react";
+import { ArrowLeft, CheckCircle, GraduationCap, MapPin, BookOpen, BarChart2 } from "lucide-react";
 import { useNavigate, getNavState } from "../hooks/useNavigate";
 
 const WA_LINK = "https://wa.me/601112200603";
@@ -347,9 +347,16 @@ export default function UniversitiesPage() {
           🎓 جامعاتنا الشريكة
         </div>
         <h1 className="text-4xl md:text-5xl font-bold mb-4">12 جامعة ماليزية معتمدة</h1>
-        <p className="text-green-100 text-lg max-w-2xl mx-auto">
+        <p className="text-green-100 text-lg max-w-2xl mx-auto mb-6">
           نساعدك على الالتحاق بأفضل الجامعات الماليزية المعترف بها دولياً — استشارة مجانية، نتولى كل الإجراءات
         </p>
+        <button
+          onClick={() => go("compare")}
+          className="inline-flex items-center gap-2 bg-white text-green-800 hover:bg-green-50 px-6 py-3 rounded-2xl font-bold text-sm shadow-lg transition-all hover:shadow-xl"
+        >
+          <BarChart2 size={18} />
+          قارن بين الجامعات
+        </button>
       </div>
 
       {/* Quick Nav */}
